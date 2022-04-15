@@ -17,7 +17,7 @@ const typeDefs = gql`
         name: String
         artists: [String]
         cover: String
-        year: Number
+        year: Int
         reviews: [Review]
         favoritedBy: [User]
     }
@@ -26,18 +26,21 @@ const typeDefs = gql`
         _id: ID
         albumId: String
         body: String
-        rating: Number
+        rating: Int
     }
 
     type Collection {
         _id: ID
         name: String
-        collection: [Album]
+        albumCollection: [Album]
     }
 
     type Query {
         me: User
-        users: [User]
+        getUsers: [User]
+        getAlbums: [Album]
+        getCollections: [Collection]
+        getReviews: [Review]
         user(username: String!): User
     }
 

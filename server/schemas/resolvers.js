@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Album, Collection, Review } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -16,17 +16,40 @@ const resolvers = {
             }
 
             throw new AuthenticationError('Not logged in');
+        },
+        getUsers: async () => {
+            const data = User.find().select('-__v -password');
+
+            return data;
+        },
+        getAlbums: async () => {
+            const data = Album.find();
+
+            return data;
+        },
+        getCollections: async () => {
+            const data = Collection.find();
+
+            return data;
+        },
+        getReviews: async () => {
+            const data = Review.find();
+
+            return data;
         }
     },
 
     Mutation: {
+        // create a new user given the args
         addUser: async(parent, args) => {
             const user = await User.create(args);
+            
+            // sign the token
             const token = signToken(user);
-
             return { token, user }
         },
 
+        // check the validity of the email and the password
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
 
@@ -40,6 +63,7 @@ const resolvers = {
                 throw new AuthenticationError('Incorrect credentials');
             }
 
+            // sign the token
             const token = signToken(user);
             return { token, user };
         }

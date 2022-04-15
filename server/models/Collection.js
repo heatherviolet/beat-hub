@@ -6,7 +6,7 @@ const collectionSchema = new Schema(
             type: String,
             required: true
         },
-        collection: [
+        albumCollection: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'Album'
