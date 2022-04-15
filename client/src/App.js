@@ -1,5 +1,5 @@
 import Nav from "./components/Nav";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";
 import "./App.css";
 
@@ -41,9 +41,11 @@ function App() {
           <header className="App-header d-flex align-items-start justify-content-start">
             <Nav />
           </header>
-          <Routes>
+          <Switch>
             <Route exact path="/" />
-          </Routes>
+            <Route exact path="/search" />
+            <Route exact path="/profile" />
+          </Switch>
         </div>
       </Router>
     </ApolloProvider>
