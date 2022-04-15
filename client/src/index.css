@@ -1,3 +1,27 @@
+:root {
+  --main-bg-color: #848C8E;
+  --secondary-bg-color: #435058;
+  --tertiary-bg-color: #BFB7B6;
+  --cream-color: #F1F2EE;
+  --accent-color: #DCF763;
+}
+
+.spacing-w-1 {
+  margin: 0vw 1.8vw;
+}
+
+.spacing-w-2 {
+  margin: 0vw 5vw;
+}
+
+.spacing-h-1 {
+  margin: 0vh 1.8vh;
+}
+
+.spacing-h-2 {
+  margin: 0vh 5vh;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
