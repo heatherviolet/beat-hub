@@ -5,11 +5,9 @@ import logo from "../assets/images/beethub.JPG";
 
 export default function Navigate() {
   const [selectedNav, setSelectedNav] = useState("");
-  let selectedE = "";
   const select = (e) => {
     let target = e.target.text;
     setSelectedNav(target);
-    selectedE = target;
   };
 
   return (
