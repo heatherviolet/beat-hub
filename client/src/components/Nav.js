@@ -3,12 +3,20 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/beethub.JPG";
 
+// import the auth object
+import Auth from '../utils/auth';
+
 export default function Navigate() {
   const [selectedNav, setSelectedNav] = useState("");
   const select = (e) => {
     let target = e.target.text;
     setSelectedNav(target);
   };
+
+  const logout = event => {
+      event.preventDefault();
+      Auth.logout();
+  }
 
   return (
     <Navbar
@@ -35,9 +43,29 @@ export default function Navigate() {
           <Nav.Link as={Link} to="/search" onClick={select} className={selectedNav === "Search" ? "selectedNav" : ""}>
             Search
           </Nav.Link>
-          <Nav.Link as={Link} to="/profile" onClick={select} className={selectedNav === "Profile" ? "selectedNav" : ""}>
-            Profile
-          </Nav.Link>
+        </Nav>
+      </Container>
+      <Container className="d-flex justify-content-end">
+        <Nav>
+          {Auth.loggedIn() ? (
+            <>
+              <Nav.Link as={Link} to="/profile" onClick={select} className={selectedNav === "Profile" ? "selectedNav" : ""}>
+                Profile
+              </Nav.Link>
+              <Nav.Link to="/" onClick={logout}>
+                Logout
+              </Nav.Link>
+            </>
+          ) : (
+            <>
+              <Nav.Link as={Link} to="/login" onClick={select} className={selectedNav === "Login" ? "selectedNav" : ""}>
+                Login
+              </Nav.Link>
+              <Nav.Link as={Link} to="/signup" onClick={select} className={selectedNav === "Sign Up" ? "selectedNav" : ""}>
+                Sign Up
+              </Nav.Link>
+            </>
+          )}
         </Nav>
       </Container>
     </Navbar>
