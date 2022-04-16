@@ -8,7 +8,6 @@ import {
   InMemoryCache,
   createHttpLink,
 } from "@apollo/client";
-require("dotenv").config();
 
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
@@ -45,13 +44,13 @@ function App() {
           <header className="d-flex align-items-start justify-content-start">
             <Nav />
           </header>
-          <body className="d-flex justify-content-start px-4">
+          <main className="d-flex justify-content-start px-4">
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/search" component={Search} />
             <Route exact path="/profile" component={Profile} />
           </Switch>
-          </body>
+          </main>
         </div>
       </Router>
       <Footer />
