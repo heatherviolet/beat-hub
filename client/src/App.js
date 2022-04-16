@@ -2,7 +2,8 @@ import Nav from "./components/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";
 import "./App.css";
-
+import Home from './pages/Home';
+import Search from './pages/Search';
 import { setContext } from "@apollo/client/link/context";
 import {
   ApolloProvider,
@@ -10,6 +11,8 @@ import {
   InMemoryCache,
   createHttpLink,
 } from "@apollo/client";
+
+
 
 // establish graphql uri
 const httpLink = createHttpLink({
@@ -40,12 +43,14 @@ function App() {
         <div className="App">
           <header className="App-header d-flex align-items-start justify-content-start">
             <Nav />
+            <div className="container">
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/search" component={Search} />
+                <Route exact path="/profile" />
+              </Switch>
+            </div>
           </header>
-          <Switch>
-            <Route exact path="/" />
-            <Route exact path="/search" />
-            <Route exact path="/profile" />
-          </Switch>
         </div>
       </Router>
     </ApolloProvider>
