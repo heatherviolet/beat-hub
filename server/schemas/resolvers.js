@@ -48,6 +48,19 @@ const resolvers = {
             const token = signToken(user);
             return { token, user }
         },
+        
+        saveAlbum: async (parent, args, context) => {
+            if (context.user) {
+                console.log(args);
+                const user = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { savedAlbums: { ...args } } },
+                    { new: true, runValidators: true }
+                )
+                return { token, user }
+            }
+        },
+        
 
         // check the validity of the email and the password
         login: async (parent, { email, password }) => {

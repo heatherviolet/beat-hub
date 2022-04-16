@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // connect to mongodb
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/beat-hub');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/beat-hub');
 
 /* 
 Apparently the options useNewUrlParser, useUnifiedTopology, 
