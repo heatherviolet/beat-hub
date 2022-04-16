@@ -8,6 +8,7 @@ import {
   InMemoryCache,
   createHttpLink,
 } from "@apollo/client";
+require("dotenv").config();
 
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
