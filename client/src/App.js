@@ -41,7 +41,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="App">
-          <header className="App-header d-flex align-items-start justify-content-start">
+          <header className="d-flex align-items-start justify-content-start">
             <Nav />
           </header>
           <Switch>

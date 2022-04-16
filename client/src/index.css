@@ -1,14 +1,10 @@
 :root {
   --react-bg-color: #282c34;
-  --main-bg-color: #848C8E;
-  --secondary-bg-color: #435058;
+  --main-bg-color: #32434d;
+  --secondary-bg-color: #848C8E;
   --tertiary-bg-color: #BFB7B6;
   --cream-color: #F1F2EE;
   --accent-color: #DCF763;
-}
-
-* {
-  background-color: var(--secondary-bg-color);
 }
 
 .spacing-w-1 {
@@ -40,12 +36,16 @@
   padding: 0.2vh 2vw;
 }
 
-nav {
-  width: 100vw;
+.navContainer {
+  background-color: var(--main-bg-color);
+  min-width: 100vw;
+  padding: 2rem 5rem;
+  margin: 0 0 0.8rem 0;
 }
 
 body {
   margin: 0;
+  background-color: var(--secondary-bg-color);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
