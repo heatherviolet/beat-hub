@@ -12,13 +12,12 @@ export default function Navigate() {
 
   return (
     <Navbar
-      bg="dark"
       variant="dark"
-      className="d-flex w-100 justify-content-start"
+      className="d-flex w-100 justify-content-center py-0"
       id="navbar"
     >
-      <Container className="d-flex justify-content-start mx-0">
-        <Navbar.Brand as={Link} to="/">
+      <Container className="navContainer d-flex justify-content-start">
+        <Navbar.Brand as={Link} to="/" className="px-3">
           <img
             alt=""
             src={logo}
@@ -38,15 +37,12 @@ export default function Navigate() {
           <Nav.Link as={Link} to="/profile" onClick={select} className={selectedNav === "Profile" ? "selectedNav" : ""}>
             Profile
           </Nav.Link>
-<<<<<<< HEAD
           <Nav.Link as={Link} to="/login" onClick={select} className={selectedNav === "Login" ? "selectedNav" : ""}>
             Login
           </Nav.Link>
           <Nav.Link as={Link} to="/signup" onClick={select} className={selectedNav === "SignUp" ? "selectedNav" : ""}>
             SignUp
           </Nav.Link>
-=======
->>>>>>> origin/develop
         </Nav>
       </Container>
     </Navbar>

@@ -2,15 +2,10 @@
 const express = require('express');
 const app = express();
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/develop
 const path = require('path');
 
 const { ApolloServer } = require('apollo-server-express');
 
-// import the typedefs and resolvers
 const { typeDefs, resolvers }= require('./schemas')
 
 // import auth middleware
