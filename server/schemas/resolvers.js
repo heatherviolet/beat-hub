@@ -48,13 +48,13 @@ const resolvers = {
             const token = signToken(user);
             return { token, user }
         },
-        
-        saveAlbum: async (parent, args, context) => {
+
+        favorites: async (parent, args, context) => {
             if (context.user) {
                 console.log(args);
                 const user = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $push: { savedAlbums: { ...args } } },
+                    { $push: { favorites: { ...args } } },
                     { new: true, runValidators: true }
                 )
                 return { token, user }
