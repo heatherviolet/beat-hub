@@ -61,17 +61,17 @@ const resolvers = {
             }
         },
 
-        removeFavorite: async (parent, { albumId}, context) => {
-            if (context.user) {
-                console.log(albumId);
-                const user = await User.findOneAndUpdate(
-                     { _id: context.user._id },
-                     { $pull: { favorites: { albumId: albumId} } },
-                     { new: true }
-                 )
-                 return { token, user };
-                }
-            },
+        // removeFavorite: async (parent, { albumId}, context) => {
+        //     if (context.user) {
+        //         console.log(albumId);
+        //         const user = await User.findOneAndUpdate(
+        //              { _id: context.user._id },
+        //              { $pull: { favorites: { albumId: albumId} } },
+        //              { new: true }
+        //          )
+        //          return { token, user };
+        //         }
+        //     },
         
 
         // check the validity of the email and the password
