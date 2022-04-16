@@ -11,6 +11,9 @@ import {
   createHttpLink,
 } from "@apollo/client";
 
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+
 // establish graphql uri
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -38,13 +41,13 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="App">
-          <header className="App-header d-flex align-items-start justify-content-start">
-            <Nav />
-          </header>
+          <Nav />
           <Switch>
             <Route exact path="/" />
             <Route exact path="/search" />
             <Route exact path="/profile" />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
           </Switch>
         </div>
       </Router>
