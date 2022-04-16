@@ -3,8 +3,7 @@ const axios = require('axios');
 
 
 const Home = () => {
-  
-    const [albums, setAlbums] = useState([]);
+    const [albums, setAlbums] = useState();
     const [formState, setFormState] = useState({ name: '' });
 
     // logs user input into a variable
@@ -28,7 +27,7 @@ const Home = () => {
               q: albumTyped,
               type: 'albums',
               offset: '0',
-              limit: '10',
+              limit: '5',
               numberOfTopResults: '5'
             },
             headers: {
@@ -65,11 +64,11 @@ const Home = () => {
             <button type="submit">Search</button>
         </form>
         <div>
-            {JSON.stringify(albums)}
             {albums.map(album=>(
                 <div>
                     <p>album: {album.data.name}</p>
                     <p>artist: {album.data.artists.items[0].profile.name}</p>
+                    
                 </div>
             ))}
         </div>
