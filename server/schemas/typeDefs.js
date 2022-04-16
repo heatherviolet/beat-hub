@@ -48,6 +48,7 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
         favorites(artists: [String], name: String!, albumId: String!, cover: String! reviews: [Review]) : User
+        removeBook(albumId: String!): User
     }
 
     type Auth {
