@@ -44,11 +44,13 @@ function App() {
           <header className="d-flex align-items-start justify-content-start">
             <Nav />
           </header>
+          <body className="d-flex justify-content-start px-4">
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/search" component={Search} />
             <Route exact path="/profile" component={Profile} />
           </Switch>
+          </body>
         </div>
       </Router>
       <Footer />

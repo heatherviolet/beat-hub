@@ -23,6 +23,19 @@
   margin: 0vh 5vh;
 }
 
+.form {
+  width: 50vw;
+  background-color: var(--cream-color);
+  border: 3px solid var(--tertiary-bg-color);
+  border-radius: 22px;
+}
+
+.button {
+  color: var(--accent-color);
+  border-style: outset;
+  border-width: 3px;
+}
+
 .selectedNav {
   text-decoration: none;
   text-decoration-style: none;
