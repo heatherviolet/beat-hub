@@ -1,8 +1,6 @@
 import Nav from "./components/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";
-import "./App.css";
-<<<<<<< HEAD
 import { setContext } from "@apollo/client/link/context";
 import {
   ApolloProvider,
@@ -14,16 +12,7 @@ import {
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
-=======
-
-import { setContext } from "@apollo/client/link/context";
-import {
-  ApolloProvider,
-  ApolloClient,
-  InMemoryCache,
-  createHttpLink,
-} from "@apollo/client";
->>>>>>> develop
+import Footer from "./components/Footer"
 
 // establish graphql uri
 const httpLink = createHttpLink({
@@ -62,6 +51,7 @@ function App() {
           </Switch>
         </div>
       </Router>
+      <Footer />
     </ApolloProvider>
   );
 }
