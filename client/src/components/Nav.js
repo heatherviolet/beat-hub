@@ -38,12 +38,15 @@ export default function Navigate() {
           <Nav.Link as={Link} to="/profile" onClick={select} className={selectedNav === "Profile" ? "selectedNav" : ""}>
             Profile
           </Nav.Link>
+<<<<<<< HEAD
           <Nav.Link as={Link} to="/login" onClick={select} className={selectedNav === "Login" ? "selectedNav" : ""}>
             Login
           </Nav.Link>
           <Nav.Link as={Link} to="/signup" onClick={select} className={selectedNav === "SignUp" ? "selectedNav" : ""}>
             SignUp
           </Nav.Link>
+=======
+>>>>>>> origin/develop
         </Nav>
       </Container>
     </Navbar>

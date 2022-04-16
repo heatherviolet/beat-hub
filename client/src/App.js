@@ -1,6 +1,9 @@
 import Nav from "./components/Nav";
+<<<<<<< HEAD
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+=======
+>>>>>>> origin/develop
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";
 import "./App.css";
@@ -47,9 +50,12 @@ function App() {
             <Route exact path="/" />
             <Route exact path="/search" />
             <Route exact path="/profile" />
+<<<<<<< HEAD
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={SignUp} />
             
+=======
+>>>>>>> origin/develop
           </Switch>
         </div>
       </Router>
