@@ -5,7 +5,7 @@ require('dotenv').config();
 // MAKE SURE YOU CREATE A .ENV FILE WITH A SECRET, OTHERWISE THIS WILL NOT WORK
 const secret = "tacos";
 const expiration = '2h';
- 
+
 module.exports = {
     signToken: ({ username, email, _id }) => {
         // specify the payload
