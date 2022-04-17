@@ -13,7 +13,7 @@ const typeDefs = gql`
 
     type Album {
         _id: ID
-        albumId: String
+        albumId: String!
         name: String
         artists: [String]
         cover: String
@@ -41,7 +41,7 @@ const typeDefs = gql`
         getAlbums: [Album]
         getCollections: [Collection]
         getReviews: [Review]
-        findAlbum(albumId: String!): Boolean
+        findAlbum(albumId: String!): Album
         user(username: String!): User
     }
 
@@ -49,6 +49,8 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
         addAlbum(albumId: String, name: String, artists: [String], cover: String, year: Int): Album
+        addFavorite(id: ID): User
+        drop: Boolean
     }
 
     type Auth {

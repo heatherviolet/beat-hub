@@ -38,3 +38,15 @@ import { gql } from '@apollo/client';
         }
     }
  `;
+
+ export const ADD_FAVORITE = gql`
+    mutation addFavorite($id: ID) {
+        addFavorite(id: $id) {
+            _id
+            username
+            favorites {
+                name
+            }
+        }
+    }
+ `;

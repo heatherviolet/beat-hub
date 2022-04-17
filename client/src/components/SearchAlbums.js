@@ -3,38 +3,53 @@ import React from 'react'
 import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
 import { FIND_ALBUM } from '../utils/queries';
-import { ADD_ALBUM } from '../utils/mutations';
+import { ADD_ALBUM, ADD_FAVORITE } from '../utils/mutations';
+
+import { QUERY_ME } from '../utils/queries';
 
 import { useQuery, useMutation } from '@apollo/client';
 
+import Auth from '../utils/auth';
+
 export default function SearchAlbums({ album }) {
-
-    // query if the album exists
-    const { loading, data } = useQuery(FIND_ALBUM, {
+    const { loadingAlbum, dataAlbum } = useQuery(FIND_ALBUM, {
         variables: { albumId: album.albumId }
-    })
+    });
 
-    // grab the data
-    const exists = data?.findAlbum
+    const { loadingMe, dataMe } = useQuery(QUERY_ME);
 
-    const [addAlbum, { error }] = useMutation(ADD_ALBUM);
+    const me = dataMe?.me;
 
-    const addToFavorites = async (album) => {
-            try {
-                // add the album to our database
-                await addAlbum({
-                    variables: {
-                        name: album.name,
-                        albumId: album.albumId,
-                        artists: album.artists.items.map(data => data.profile.name),
-                        cover: album.cover,
-                        year: album.year
-                    }
-                })
-            } catch (err) {
-                console.log('This album already exists!')
-            }
+    const [addAlbum, { albumError }] = useMutation(ADD_ALBUM);
+    const [addFavorite, { favoriteError }] = useMutation(ADD_FAVORITE);
 
+    const cacheAlbum = async () => {
+        // add the album to our database
+        try {
+            const promise = await addAlbum({
+                variables: {
+                    name: album.name,
+                    albumId: album.albumId,
+                    artists: album.artists.items.map(data => data.profile.name),
+                    cover: album.cover,
+                    year: album.year
+                }
+            })
+
+            return promise.data.addAlbum._id;
+        } catch (err) {
+            console.log(err)
+        }
+    };
+
+    const addToFavorites = async (id) => {
+        try {
+            await addFavorite({
+                variables: { id: id }
+            })
+        } catch (err) {
+            console.error(err)
+        }
     }
 
     return (
@@ -47,13 +62,26 @@ export default function SearchAlbums({ album }) {
             <ListGroup className="list-group-flush">
                 <ListGroupItem>
                     {album.artists.items.map((profile) => {
-                        return profile.profile.name
+                        return profile.profile.name + ' '
                     })}
                 </ListGroupItem>
             </ListGroup>
             <Card.Body>
-                <Card.Link href={album.albumURI}>Check It Out on Spotify</Card.Link>
-                <Button className="btn btn-primary" onClick={() => addToFavorites(album)}>Button</Button>
+                {Auth.loggedIn() ? (
+                    <>
+                        <Card.Link href={album.albumURI}>Check It Out on Spotify</Card.Link>
+                        <ListGroup>
+                            <ListGroupItem>
+                                <Button className="btn btn-danger" 
+                                        onClick={() => { cacheAlbum().then(addToFavorites) }}
+                                        >Favorite</Button>
+                            </ListGroupItem>
+                        </ListGroup>
+                    </>
+                ) : (
+                    <h3>Login to to use BeetHub!</h3>
+                )}
+                
             </Card.Body>
         </Card>
     )
