@@ -1,15 +1,7 @@
-import React, { useState } from "react";
-import Search from "../components/Search";
-const axios = require('axios');
+import React from 'react'
 
-
-const Home = () => {
-    
-    return (
-    <>
-        <Search></Search>
-    </>
-    );
-};
-
-export default Home;
+export default function Home() {
+  return (
+    <div>Home</div>
+  )
+}
