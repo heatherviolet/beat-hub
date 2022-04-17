@@ -35,7 +35,7 @@ const albumSchema = new Schema(
         favoritedBy: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'User' 
+                ref: 'User'
             }
         ]
     },

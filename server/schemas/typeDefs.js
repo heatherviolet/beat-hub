@@ -13,7 +13,7 @@ const typeDefs = gql`
 
     type Album {
         _id: ID
-        albumId: String
+        albumId: String!
         name: String
         artists: [String]
         cover: String
@@ -41,14 +41,16 @@ const typeDefs = gql`
         getAlbums: [Album]
         getCollections: [Collection]
         getReviews: [Review]
+        findAlbum(albumId: String!): Album
         user(username: String!): User
     }
 
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
-        favorites(artists: [String], name: String!, albumId: String!, cover: String!) : User
-        removeAlbum(albumId: String!): User
+        addAlbum(albumId: String, name: String, artists: [String], cover: String, year: Int): Album
+        addFavorite(id: ID): User
+        drop: Boolean
     }
 
     type Auth {
