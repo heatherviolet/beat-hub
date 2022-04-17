@@ -36,6 +36,15 @@ const resolvers = {
             const data = Review.find();
 
             return data;
+        },
+        findAlbum: async (parent, { albumId }) => {
+            const exists = Album.exists({ albumId: albumId }, () => { /* nothing goes here */ });
+
+            if (!exists) {
+                return false;
+            } else {
+                return true;
+            }
         }
     },
 

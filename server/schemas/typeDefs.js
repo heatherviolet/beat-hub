@@ -41,6 +41,7 @@ const typeDefs = gql`
         getAlbums: [Album]
         getCollections: [Collection]
         getReviews: [Review]
+        findAlbum(albumId: String!): Boolean
         user(username: String!): User
     }
 

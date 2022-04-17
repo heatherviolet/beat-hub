@@ -18,3 +18,9 @@ export const QUERY_ME = gql`
         }
     }
 `;
+
+export const FIND_ALBUM = gql`
+    query findAlbum($albumId: String!) {
+        findAlbum(albumId: $albumId)
+    }
+`;
