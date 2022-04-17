@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Form, Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { searchSpotify } from "../utils/API";
+
+import SearchAlbums from '../components/SearchAlbums';
 
 export default function Search() {
   const [searchedAlbums, setSearchedAlbums] = useState([]);
@@ -61,23 +63,8 @@ export default function Search() {
       </Form>
       <div>
         {searchedAlbums.length ? searchedAlbums.map((album, i) => {
-          return (
-            <Card key={i} style={{ width: "18rem" }}>
-              <Card.Img variant="top" src={album.cover} />
-              <Card.Body>
-                <Card.Title>{album.name}</Card.Title>
-                <Card.Text>{album.year}</Card.Text>
-              </Card.Body>
-              <ListGroup className="list-group-flush">
-                <ListGroupItem>{album.artists.items.map((profile) => {
-                  return profile.name
-                })}</ListGroupItem>
-              </ListGroup>
-              <Card.Body>
-                <Card.Link href={album.albumURI}>Check It Out on Spotify</Card.Link>
-              </Card.Body>
-            </Card>
-          );
+          console.log(album)
+          return <SearchAlbums key={i} album={album}/>
         }) : ""}
       </div>
     </>
