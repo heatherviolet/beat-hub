@@ -1,4 +1,6 @@
 import Nav from "./components/Nav";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";
 import { setContext } from "@apollo/client/link/context";
@@ -47,6 +49,8 @@ function App() {
           <main className="d-flex justify-content-start px-4">
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={SignUp} />
             <Route exact path="/search" component={Search} />
             <Route exact path="/profile" component={Profile} />
           </Switch>
