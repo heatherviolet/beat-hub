@@ -56,6 +56,11 @@
   margin: 0 0 0.8rem 0;
 }
 
+.card {
+  background-color: #32434d;
+  
+}
+
 body {
   margin: 0;
   background-color: var(--secondary-bg-color);
