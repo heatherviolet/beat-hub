@@ -75,6 +75,18 @@ const resolvers = {
             // sign the token
             const token = signToken(user);
             return { token, user };
+        },
+
+        addAlbum: async (parent, { name, albumId, artists, cover, year }) => {
+            const album = Album.create({ 
+                name: name,
+                albumId: albumId,
+                artists: artists,
+                cover: cover,
+                year: year
+            })
+
+            return album;
         }
     }
 }

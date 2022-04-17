@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { searchSpotify } from "../utils/API";
 
 import SearchAlbums from '../components/SearchAlbums';
@@ -63,6 +63,7 @@ export default function Search() {
       </Form>
       <div>
         {searchedAlbums.length ? searchedAlbums.map((album, i) => {
+          console.log(album)
           return <SearchAlbums key={i} album={album}/>
         }) : ""}
       </div>
