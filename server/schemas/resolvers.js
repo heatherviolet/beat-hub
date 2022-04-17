@@ -21,12 +21,14 @@ const resolvers = {
         },
         getUsers: async () => {
             const data = User.find().select('-__v -password')
-                                    .populate('favorites');
+                                    .populate('favorites')
+                                    .populate('reviews');
 
             return data;
         },
         getAlbums: async () => {
-            const data = Album.find().populate('favoritedBy');
+            const data = Album.find().populate('favoritedBy')
+                                    .populate('reviews');
 
             return data;
         },
@@ -89,8 +91,6 @@ const resolvers = {
         },
 
         addFavorite: async (parent, { id }, context) => {
-            console.log(id)
-
             // find a user and update
             const user = await User.findOneAndUpdate(
                 { _id: context.user._id },
@@ -106,6 +106,38 @@ const resolvers = {
             ).populate('favoritedBy');
 
             return user;
+        },
+
+        addReview: async (parent, { albumId, body, rating }, context) => {
+            const review = await Review.create({
+                // albumId refers to Spotify ID
+                albumId: albumId,
+                body: body,
+                rating: rating,
+                author: context.user.username
+            })
+
+            await User.findOneAndUpdate(
+                { _id: context.user._id },
+                { $addToSet: { reviews: review._id } },
+                { new: true, runValidators: true }
+            ).populate('reviews');
+
+            await Album.findOneAndUpdate(
+                { albumId: albumId }, 
+                { $addToSet: { reviews: review._id } },
+                { new: true, runValidators: true }
+            ).populate('reviews');
+
+            return review;
+        },
+
+        createCollection: async () => {
+
+        },
+
+        addToCollection: async () => {
+
         },
 
         // experimental
