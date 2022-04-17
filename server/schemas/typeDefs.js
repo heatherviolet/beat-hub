@@ -53,7 +53,7 @@ const typeDefs = gql`
         addFavorite(id: ID): User
         addReview(albumId: String, body: String, rating: Float): Review
         createCollection(name: String): Collection
-        addToCollection(collId: ID, id: ID): Collection
+        addToCollection(collId: ID, albumId: ID): Collection
         drop: Boolean
     }
 

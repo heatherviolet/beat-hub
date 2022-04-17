@@ -22,7 +22,8 @@ const resolvers = {
         getUsers: async () => {
             const data = User.find().select('-__v -password')
                                     .populate('favorites')
-                                    .populate('reviews');
+                                    .populate('reviews')
+                                    .populate('collections');
 
             return data;
         },
@@ -33,7 +34,7 @@ const resolvers = {
             return data;
         },
         getCollections: async () => {
-            const data = Collection.find();
+            const data = Collection.find().populate('albumCollection');
 
             return data;
         },
@@ -43,7 +44,9 @@ const resolvers = {
             return data;
         },
         findAlbum: async (parent, { albumId }) => {
-            const data = Album.findOne({ albumId: albumId })
+            const data = await Album.findOne({ albumId: albumId })
+
+            console.log(data)
 
             return data;
         }
@@ -90,6 +93,7 @@ const resolvers = {
             return album;
         },
 
+        // id = _id property of the album object
         addFavorite: async (parent, { id }, context) => {
             // find a user and update
             const user = await User.findOneAndUpdate(
@@ -108,6 +112,7 @@ const resolvers = {
             return user;
         },
 
+        // albumId = ID from Spotify
         addReview: async (parent, { albumId, body, rating }, context) => {
             const review = await Review.create({
                 // albumId refers to Spotify ID
@@ -132,12 +137,29 @@ const resolvers = {
             return review;
         },
 
-        createCollection: async () => {
+        // name = whatever name the user gives the collection
+        createCollection: async (parent, { name }, context) => {
+            const collection = await Collection.create({ name: name });
 
+            await User.findOneAndUpdate(
+                { _id: context.user._id },
+                { $addToSet: { collections: collection._id } },
+                { new: true, runValidators: true }
+            )
+
+            return collection;
         },
 
-        addToCollection: async () => {
+        // collId = _id of the collection
+        // albumId = _id of the album
+        addToCollection: async (parent, { collId, albumId }) => {
+            const albumCollection = await Collection.findOneAndUpdate(
+                { _id: collId },
+                { $addToSet: { albumCollection: albumId } },
+                { new: true, runValidators: true }
+            ).populate('albumCollection')
 
+            return albumCollection
         },
 
         // experimental
