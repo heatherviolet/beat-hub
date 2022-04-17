@@ -60,8 +60,6 @@ const resolvers = {
                 return { token, user };
             }
         },
-
-
         
 
         // check the validity of the email and the password
