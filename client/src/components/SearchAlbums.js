@@ -19,6 +19,7 @@ export default function SearchAlbums({ album }) {
 
     const [addAlbum, { albumError }] = useMutation(ADD_ALBUM);
     const [addFavorite, { favoriteError }] = useMutation(ADD_FAVORITE);
+    // const [addReview, { reviewError }] = useMutation(ADD_REVIEW);
 
     const cacheAlbum = async () => {
         // add the album to our database
@@ -53,6 +54,16 @@ export default function SearchAlbums({ album }) {
         }
     }
 
+    const reviewAlbum = async (id) => {
+        try {
+            await addReview({
+                variables: { id: id }
+            }).then(console.log('Added review!'))
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
     return (
         <Card style={{ width: "18rem" }}>
             <Card.Img variant="top" src={album.cover} />
@@ -81,11 +92,11 @@ export default function SearchAlbums({ album }) {
                         <ListGroup>
                             <ListGroupItem>
                                 <Button className="btn btn-danger" 
-                                        onClick={() => { cacheAlbum() }}
+                                        onClick={() => { reviewAlbum() }}
                                         >Review</Button>
                             </ListGroupItem>
                         </ListGroup>
-                    </>
+                    </> 
                     
                 ) : (
                     <h3>Login to to use BeetHub!</h3>

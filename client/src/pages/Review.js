@@ -1,7 +1,6 @@
 import { useState } from "react";
-import ReactDOM from "react-dom";
 
-function ReviewForm() {
+const ReviewForm = () => { {
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -17,27 +16,17 @@ function ReviewForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>What album would you like to review?
+      <label>Leave your review below:
       <input 
         type="text" 
-        name="album" 
+        name="review" 
         value={inputs.albumId || ""} 
         onChange={handleChange}
-      />
-      </label>
-      <label>Enter your age:
-        <input 
-          type="number" 
-          name="age" 
-          value={inputs.age || ""} 
-          onChange={handleChange}
         />
         </label>
         <input type="submit" />
     </form>
   )
 }
-
-ReactDOM.render(<MyForm />, document.getElementById('root'));
-
-export default Review;
+}
+export default ReviewForm;
