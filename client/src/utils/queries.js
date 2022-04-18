@@ -8,6 +8,10 @@ export const QUERY_ME = gql`
             email
             collections {
                 _id
+                name
+                albumCollection {
+                    cover
+                }
             }
             reviews {
                 _id

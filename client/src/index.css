@@ -7,6 +7,38 @@
   --accent-color: #DCF763;
 }
 
+h1,
+h2,
+h3 {
+  color: var(--cream-color);
+}
+
+.collection-back {
+  background-color: var(--main-bg-color);
+  margin: 20px;
+  padding: 0px 0px 10px 0px;
+  min-width: 300px;
+  min-height: 300px;
+}
+
+.image-wrap {
+  min-width: 300px;
+  min-height: 300px;
+}
+
+.coll-title {
+  background-color: var(--react-bg-color);
+  padding: 15px;
+}
+
+.point:hover {
+  cursor: pointer;
+}
+
+.inner-coll {
+  padding: 20px
+}
+
 .spacing-w-1 {
   margin: 0vw 1.8vw;
 }

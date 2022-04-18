@@ -11,7 +11,14 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                                             .select('-__v -password')
-                                            .populate('collections')
+                                            .populate(
+                                                {
+                                                    path: 'collections',
+                                                    populate: {
+                                                        path: 'albumCollection'
+                                                    }
+                                                }
+                                            )
                                             .populate('reviews')
                                             .populate('favorites');
                 return userData;

@@ -6,7 +6,9 @@ import { ADD_ALBUM, ADD_FAVORITE } from '../utils/mutations';
 
 import { QUERY_ME, FIND_ALBUM } from '../utils/queries';
 
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client'
+
+import { Link } from 'react-router-dom';
 
 import Auth from '../utils/auth';
 
@@ -20,7 +22,7 @@ export default function SearchAlbums({ album }) {
     const [addAlbum, { albumError }] = useMutation(ADD_ALBUM);
     const [addFavorite, { favoriteError }] = useMutation(ADD_FAVORITE);
 
-    const cacheAlbum = async () => {
+    const cacheAlbum = async (action) => {
         // add the album to our database
         try {
             if (!data.findAlbum) {
@@ -33,10 +35,14 @@ export default function SearchAlbums({ album }) {
                         year: album.year
                     }
                 }).then(promise => {
-                    addToFavorites(promise.data.addAlbum._id).then(refetch())
+                    if (action == 'favorite') {
+                        addToFavorites(promise.data.addAlbum._id).then(refetch())
+                    }
                 })
             } else {
-                addToFavorites(data?.findAlbum?._id).then(refetch());
+                if (action == 'favorite') {
+                    addToFavorites(data?.findAlbum?._id).then(refetch());   
+                }
             }
         } catch (err) {
             console.log(err);
@@ -52,7 +58,7 @@ export default function SearchAlbums({ album }) {
             console.error(err)
         }
     }
-
+    
     return (
         <Card style={{ width: "18rem" }}>
             <Card.Img variant="top" src={album.cover} />
@@ -74,8 +80,14 @@ export default function SearchAlbums({ album }) {
                         <ListGroup>
                             <ListGroupItem>
                                 <Button className="btn btn-danger" 
-                                        onClick={() => { cacheAlbum() }}
+                                        onClick={() => cacheAlbum()}
                                         >Favorite</Button>
+                                <Link to={`/addto/${album.albumId}`}>
+                                    <Button className="btn btn-success" 
+                                            onClick={() => cacheAlbum()}
+                                            >Add to...
+                                    </Button>
+                                </Link>
                             </ListGroupItem>
                         </ListGroup>
                     </>
