@@ -10,6 +10,7 @@ import {
   InMemoryCache,
   createHttpLink,
 } from "@apollo/client";
+import Auth from "./utils/auth";
 
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
@@ -32,6 +33,8 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+console.log(authLink);
+
 // create a new apollo client
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
@@ -51,7 +54,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={SignUp} />
-              {(localStorage.getItem("id_token") && (
+              {(Auth.loggedIn() && (
                 <Route exact path="/search" component={Search} />
               )) || (
                 <Route
