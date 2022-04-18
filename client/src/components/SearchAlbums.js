@@ -66,7 +66,7 @@ export default function SearchAlbums({ album, id }) {
   }
 
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card className="albumCard">
       <Card.Img variant="top" src={album.cover} />
       <Card.Body>
         <Card.Title>{album.name}</Card.Title>
@@ -87,7 +87,7 @@ export default function SearchAlbums({ album, id }) {
               <ListGroupItem>
                 <div>{idExists && "One of your Favorites"}</div>
                 {!idExists && <Button
-                  className="btn btn-danger"
+                  className="button"
                   onClick={() => {
                     cacheAlbum().then(addToFavorites);
                   }}

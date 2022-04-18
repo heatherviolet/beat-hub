@@ -23,17 +23,58 @@
   margin: 0vh 5vh;
 }
 
+html {
+  overflow:hidden;
+}
+
+::-webkit-scrollbar {
+  background: var(--main-bg-color);
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cream-color);
+}
+
+#album-container {
+  width: 60vw;
+  height: 75vh;
+  display: flex;
+  justify-content:space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  background-color: var(--main-bg-color);
+  border-radius: 5px;
+  margin: 0 0 0 1rem;
+}
+
+.albumCard {
+  width: 15vw;
+  height: 62vh;
+  background-color: var(--cream-color);
+  padding: 1.0rem;
+  margin: 1rem 0.2rem;
+}
+
 .form {
   width: 50vw;
+  max-height: 12vw;
   background-color: var(--cream-color);
   border: 3px solid var(--tertiary-bg-color);
   border-radius: 22px;
+  margin: 0 1rem;
 }
 
 .button {
+  background-color: var(--secondary-bg-color);
   color: var(--accent-color);
-  border-style: outset;
-  border-width: 3px;
+  border: 3px outset var(--cream-color);
 }
 
 .selectedNav {

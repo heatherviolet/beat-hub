@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { searchSpotify } from "../utils/API";
+import sampleData from "../data-sample.json";
 
 import SearchAlbums from '../components/SearchAlbums';
 
@@ -14,9 +15,9 @@ export default function Search() {
     if (!searchInput) {
       return false;
     }
-
+// await searchSpotify(searchInput);
     try {
-      const response = await searchSpotify(searchInput);
+      const response = sampleData;
       if (!response) {
         throw new Error("something went wrong!");
       }
@@ -59,7 +60,7 @@ export default function Search() {
           </Button>
         </Form.Group>
       </Form>
-      <div>
+      <div id="album-container">
         {searchedAlbums.length ? searchedAlbums.map((album, i) => {
           console.log(album)
           return <SearchAlbums key={i} album={album} id={album.albumId}/>

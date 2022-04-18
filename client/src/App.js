@@ -51,7 +51,17 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/search" component={Search} />
+              {(localStorage.getItem("id_token") && (
+                <Route exact path="/search" component={Search} />
+              )) || (
+                <Route
+                  exact
+                  path="/search"
+                  component={() => {
+                    return <h2>Login to start searching!</h2>;
+                  }}
+                />
+              )}
               <Route exact path="/profile" component={Profile} />
             </Switch>
           </main>
