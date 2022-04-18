@@ -20,6 +20,7 @@ const typeDefs = gql`
         year: Int
         reviews: [Review]
         favoritedBy: [User]
+        averageRating: Float
     }
 
     type Review {

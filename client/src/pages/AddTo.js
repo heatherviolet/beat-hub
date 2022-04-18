@@ -43,7 +43,7 @@ export default function AddTo() {
                     user?.collections.map((collection, i) => {
                         return <CollPrev key={i} collection={collection} _id={id} />
                     }
-                )) : (
+                ).reverse()) : (
                     <>
                         <div style={{display: 'block'}}>
                             <Link to={`/addcol/${albumId}`}>

@@ -21,9 +21,14 @@ export default function Collection() {
         <div className="mx-auto" style={{maxWidth: '1200px', paddingBottom: '120px'}}>
             <h1>{collection?.name}</h1>
             <div className="d-flex flex-wrap justify-content-around">
-                {collection?.albumCollection?.map((album, i) => {
-                    return <AlbumMini key={i} name={album.name} cover={album.cover}/>
-                })}
+                {collection?.albumCollection.length ? (
+                    collection?.albumCollection?.map((album, i) => {
+                        return <AlbumMini key={i} name={album.name} cover={album.cover}/>
+                    })
+                ) : (
+                    <h3>No albums yet.</h3>
+                )}
+                
             </div>
         </div>
     );
