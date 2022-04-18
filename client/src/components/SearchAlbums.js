@@ -1,72 +1,71 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
-import { FIND_ALBUM } from "../utils/queries";
-import { ADD_ALBUM, ADD_FAVORITE } from "../utils/mutations";
+import { ADD_ALBUM, ADD_FAVORITE } from '../utils/mutations';
 
-import { QUERY_ME } from "../utils/queries";
+import { QUERY_ME, FIND_ALBUM } from '../utils/queries';
 
 import { useQuery, useMutation } from "@apollo/client";
 
 import Auth from "../utils/auth";
 
-export default function SearchAlbums({ album, id }) {
-  const { loadingAlbum, dataAlbum } = useQuery(FIND_ALBUM, {
-    variables: { albumId: album.albumId },
-  });
+export default function SearchAlbums({ album }) {
+    const { loadingAlbum, data, refetch } = useQuery(FIND_ALBUM, {
+        variables: { albumId: album.albumId }
+    });
 
-  const { loading, data } = useQuery(QUERY_ME);
-
-  const me = data?.me;
+    console.log(data?.findAlbum);
 
   const [addAlbum, { albumError }] = useMutation(ADD_ALBUM);
   const [addFavorite, { favoriteError }] = useMutation(ADD_FAVORITE);
-  const [albumId, setAlbumId] = useState([]);
 
-  const cacheAlbum = async () => {
-    // add the album to our database
-    try {
-      const promise = await addAlbum({
-        variables: {
-          name: album.name,
-          albumId: album.albumId,
-          artists: album.artists.items.map((data) => data.profile.name),
-          cover: album.cover,
-          year: album.year,
-        },
-      });
+    const cacheAlbum = async () => {
+        // add the album to our database
+        try {
+            if (!data.findAlbum) {
+                await addAlbum({
+                    variables: {
+                        name: album.name,
+                        albumId: album.albumId,
+                        artists: album.artists.items.map(data => data.profile.name),
+                        cover: album.cover,
+                        year: album.year
+                    }
+                }).then(promise => {
+                    addToFavorites(promise.data.addAlbum._id).then(refetch())
+                })
+            } else {
+                addToFavorites(data?.findAlbum?._id).then(refetch());
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
-      return promise.data.addAlbum._id;
-    } catch (err) {
-      console.log(err);
+    const addToFavorites = async (id) => {
+        try {
+            await addFavorite({
+                variables: { id: id }
+            }).then(console.log('Added to favorites!'))
+        } catch (err) {
+            console.error(err)
+        }
     }
-  };
+    let idExists = false;
 
-  const addToFavorites = async (id) => {
-    try {
-      // const { favorites } = await data;
-      // console.log(...favorites)
-      await addFavorite(
-        {
-          variables: { id: id },
-          // onCompleted: (id) => setAlbumId(...favorites ,id)
-        },
-        id
-      );
-    } catch (err) {
-      console.error(err);
-    }
-  };
+    (() => {
+        const { loading, data } = useQuery(QUERY_ME);
+        const favorites = !loading && data.me.favorites;
+    
+    for (let i = 0; i < favorites.length; i++) {
+        if (favorites[i].albumId !== id) {
+        } else {
+        idExists = true;
+            }
+        }
+    })()
 
-  const favorites = !loading && data.me.favorites;
-  let idExists = false;
-  for (let i = 0; i < favorites.length; i++) {
-    if (favorites[i].albumId !== id) {
-    } else {
-      idExists = true;
-    }
-  }
 
   return (
     <Card style={{ width: "18rem" }}>
@@ -88,7 +87,7 @@ export default function SearchAlbums({ album, id }) {
             <Card.Link href={album.albumURI}>Check It Out on Spotify</Card.Link>
             <ListGroup>
               <ListGroupItem>
-              <div>{!loading && idExists && "You already favorited this"}</div>
+              <div>{idExists && "You already favorited this"}</div>
                 <Button
                   className="btn btn-danger"
                   onClick={() => {

@@ -37,7 +37,6 @@ export default function Search() {
       }));
 
       setSearchedAlbums(albumData);
-      console.log(albumData);
       setSearchInput("");
     } catch (err) {
       console.error(err);

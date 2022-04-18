@@ -24,6 +24,7 @@ export const FIND_ALBUM = gql`
     query findAlbum($albumId: String!) {
         findAlbum(albumId: $albumId) {
             _id
+            name
         }
     }
 `;
