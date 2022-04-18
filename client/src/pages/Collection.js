@@ -11,11 +11,13 @@ import AlbumMini from '../components/AlbumMini';
 export default function Collection() {
     const { id: id } = useParams();
 
-    const { loading, data: collData } = useQuery(GET_COLLECTION, {
+    const { loading, data: collData, refetch } = useQuery(GET_COLLECTION, {
         variables: { id: id }
     });
 
     const collection = collData?.getCollection;
+
+    refetch();
 
     return (
         <div className="mx-auto" style={{maxWidth: '1200px', paddingBottom: '120px'}}>
@@ -24,7 +26,7 @@ export default function Collection() {
                 {collection?.albumCollection.length ? (
                     collection?.albumCollection?.map((album, i) => {
                         return <AlbumMini key={i} name={album.name} cover={album.cover}/>
-                    })
+                    }).reverse()
                 ) : (
                     <h3>No albums yet.</h3>
                 )}

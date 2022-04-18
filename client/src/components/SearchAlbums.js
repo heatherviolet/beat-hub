@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
@@ -8,16 +8,17 @@ import { QUERY_ME, FIND_ALBUM } from '../utils/queries';
 
 import { useQuery, useMutation } from '@apollo/client'
 
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import Auth from '../utils/auth';
 
 export default function SearchAlbums({ album }) {
+
+    const [responseAddTo, setResponseAddTo] = useState(false);
+
     const { loadingAlbum, data, refetch } = useQuery(FIND_ALBUM, {
         variables: { albumId: album.albumId }
     });
-
-    console.log(data?.findAlbum);
 
     const [addAlbum, { albumError }] = useMutation(ADD_ALBUM);
     const [addFavorite, { favoriteError }] = useMutation(ADD_FAVORITE);
@@ -35,13 +36,21 @@ export default function SearchAlbums({ album }) {
                         year: album.year
                     }
                 }).then(promise => {
-                    if (action == 'favorite') {
+                    if (action === 'favorite') {
                         addToFavorites(promise.data.addAlbum._id).then(refetch())
+                    }
+
+                    if (action === 'addTo') {
+                        setResponseAddTo(true);
                     }
                 })
             } else {
-                if (action == 'favorite') {
+                if (action === 'favorite') {
                     addToFavorites(data?.findAlbum?._id).then(refetch());
+                }
+
+                if (action === 'addTo') {
+                    setResponseAddTo(true);
                 }
             }
         } catch (err) {
@@ -57,6 +66,11 @@ export default function SearchAlbums({ album }) {
         } catch (err) {
             console.error(err)
         }
+    }
+
+    if (responseAddTo) {
+        refetch();
+        return <Redirect to={`/addto/${album.albumId}`} />
     }
     
     return (
@@ -80,14 +94,12 @@ export default function SearchAlbums({ album }) {
                         <ListGroup>
                             <ListGroupItem>
                                 <Button className="btn btn-danger" 
-                                        onClick={() => cacheAlbum()}
+                                        onClick={() => cacheAlbum('favorite')}
                                         >Favorite</Button>
-                                <Link to={`/addto/${album.albumId}`}>
-                                    <Button className="btn btn-success" 
-                                            onClick={() => cacheAlbum()}
-                                            >Add to...
-                                    </Button>
-                                </Link>
+                                <Button className="btn btn-success" 
+                                        onClick={() => cacheAlbum('addTo')}
+                                        >Add to...
+                                </Button>
                             </ListGroupItem>
                         </ListGroup>
                     </>

@@ -24,6 +24,10 @@ export default function AddCollection() {
         }
       };
 
+      if (success) {
+          return <Redirect to='/search'/>
+      }
+
     return (
         <div className="mx-auto">
             <h1>Add a collection!</h1>

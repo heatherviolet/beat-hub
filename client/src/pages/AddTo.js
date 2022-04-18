@@ -21,8 +21,7 @@ export default function AddTo() {
     });
 
     const { loadingAlbum, data: albumData, refetch } = useQuery(FIND_ALBUM, {
-        variables: { albumId: albumId },
-        pollInterval: 300
+        variables: { albumId: albumId }
     });
 
     // check if the data exists before accessing it
@@ -46,7 +45,7 @@ export default function AddTo() {
                 ).reverse()) : (
                     <>
                         <div style={{display: 'block'}}>
-                            <Link to={`/addcol/${albumId}`}>
+                            <Link to={`/addcollection`}>
                                 <h2>Add your first collection!</h2>
                             </Link>
                         </div>
