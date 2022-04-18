@@ -50,3 +50,17 @@ import { gql } from '@apollo/client';
         }
     }
  `;
+
+ export const ADD_REVIEW = gql`
+ mutation addReview($id: ID) {
+     addReview(id: $id) {
+         _id
+         album
+         review {
+             username
+             body
+             rating
+         }
+     }
+ }
+`;

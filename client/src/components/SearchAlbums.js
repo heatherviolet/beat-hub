@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
-import { ADD_ALBUM, ADD_FAVORITE } from '../utils/mutations';
+import { ADD_ALBUM, ADD_FAVORITE, ADD_REVIEW } from '../utils/mutations';
 
 import { QUERY_ME, FIND_ALBUM } from '../utils/queries';
 
@@ -19,7 +19,7 @@ export default function SearchAlbums({ album }) {
 
     const [addAlbum, { albumError }] = useMutation(ADD_ALBUM);
     const [addFavorite, { favoriteError }] = useMutation(ADD_FAVORITE);
-    // const [addReview, { reviewError }] = useMutation(ADD_REVIEW);
+    const [addReview] = useMutation(ADD_REVIEW);
 
     const cacheAlbum = async () => {
         // add the album to our database
