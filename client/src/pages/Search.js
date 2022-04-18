@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { searchSpotify } from "../utils/API";
+import dataSample from "../data-sample.json"
 
 import SearchAlbums from '../components/SearchAlbums';
 
@@ -16,8 +17,10 @@ export default function Search() {
     }
 
     try {
+      // ========================================================================
+      // Set response = dataSample if you want to test without using up API calls
+      // ========================================================================
       const response = await searchSpotify(searchInput);
-
       if (!response) {
         throw new Error("something went wrong!");
       }
@@ -64,7 +67,7 @@ export default function Search() {
       <div>
         {searchedAlbums.length ? searchedAlbums.map((album, i) => {
           console.log(album)
-          return <SearchAlbums key={i} album={album}/>
+          return <SearchAlbums key={i} album={album} id={album.albumId}/>
         }) : ""}
       </div>
     </>

@@ -14,6 +14,7 @@ export const QUERY_ME = gql`
             }
             favorites {
                 _id
+                albumId
             }
         }
     }
