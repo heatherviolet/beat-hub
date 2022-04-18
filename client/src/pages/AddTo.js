@@ -21,7 +21,8 @@ export default function AddTo() {
     });
 
     const { loadingAlbum, data: albumData, refetch } = useQuery(FIND_ALBUM, {
-        variables: { albumId: albumId }
+        variables: { albumId: albumId },
+        pollInterval: 300
     });
 
     // check if the data exists before accessing it

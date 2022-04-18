@@ -44,6 +44,7 @@ export default function AddCollection() {
                         variant="secondary"
                         type="submit"
                         className="button py-2 my-3"
+                        disabled={success}
                     >
                         Submit
                     </Button>

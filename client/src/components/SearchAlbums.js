@@ -41,7 +41,7 @@ export default function SearchAlbums({ album }) {
                 })
             } else {
                 if (action == 'favorite') {
-                    addToFavorites(data?.findAlbum?._id).then(refetch());   
+                    addToFavorites(data?.findAlbum?._id).then(refetch());
                 }
             }
         } catch (err) {
