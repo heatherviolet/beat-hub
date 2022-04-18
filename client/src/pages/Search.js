@@ -19,8 +19,9 @@ export default function Search() {
     try {
       // ========================================================================
       // Set response = dataSample if you want to test without using up API calls
+      // await searchSpotify(searchInput);
       // ========================================================================
-      const response = await searchSpotify(searchInput);
+      const response = dataSample;
       if (!response) {
         throw new Error("something went wrong!");
       }
