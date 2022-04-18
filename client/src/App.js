@@ -33,8 +33,6 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-console.log(authLink);
-
 // create a new apollo client
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
@@ -49,7 +47,7 @@ function App() {
           <header className="d-flex align-items-start justify-content-start">
             <Nav />
           </header>
-          <main className="d-flex justify-content-start px-4">
+          <main>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
@@ -68,7 +66,7 @@ function App() {
               <Route exact path="/profile" component={Profile} />
             </Switch>
           </main>
-          <Footer />
+            <Footer />
         </div>
       </Router>
     </ApolloProvider>

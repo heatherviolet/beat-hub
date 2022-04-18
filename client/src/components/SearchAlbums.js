@@ -66,8 +66,8 @@ export default function SearchAlbums({ album, id }) {
   }
 
   return (
-    <Card className="albumCard">
-      <Card.Img variant="top" src={album.cover} />
+    <Card className="albumCard d-flex align-align-content-end">
+      <Card.Img variant="top" src={album.cover} alt={album.name}/>
       <Card.Body>
         <Card.Title>{album.name}</Card.Title>
         <Card.Text>{album.year}</Card.Text>
@@ -87,7 +87,7 @@ export default function SearchAlbums({ album, id }) {
               <ListGroupItem>
                 <div>{idExists && "One of your Favorites"}</div>
                 {!idExists && <Button
-                  className="button"
+                  className="btn-warning button"
                   onClick={() => {
                     cacheAlbum().then(addToFavorites);
                   }}

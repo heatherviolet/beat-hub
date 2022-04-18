@@ -41,11 +41,28 @@ html {
   background: var(--cream-color);
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 1rem;
+}
+
+#search-page {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-direction: row;
+  max-width: 100vw;
+  max-height: 70vh;
+}
+
 #album-container {
-  width: 60vw;
+  width: 45vw;
   height: 75vh;
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   flex-direction: row;
   flex-wrap: wrap;
   overflow-y: auto;
@@ -55,8 +72,8 @@ html {
 }
 
 .albumCard {
-  width: 15vw;
-  height: 62vh;
+  width: 230px;
+  height: 600px;
   background-color: var(--cream-color);
   padding: 1.0rem;
   margin: 1rem 0.2rem;
@@ -64,11 +81,21 @@ html {
 
 .form {
   width: 50vw;
-  max-height: 12vw;
   background-color: var(--cream-color);
   border: 3px solid var(--tertiary-bg-color);
   border-radius: 22px;
-  margin: 0 1rem;
+}
+
+#under-form {
+  display: inline-block;
+  background-image: url(./assets/images/hexagon-3736091.png);
+  background-size: 210vh;
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: 50px 130px;
+  background-clip: border-box;
+  margin: 0 1rem 0 0;
 }
 
 .button {
@@ -111,9 +138,10 @@ body {
   background-color: var(--main-bg-color);
   font-size: 1.3rem;
   width: 100vw;
-  padding: 1.35vw;
+  padding: 1.10vw;
   position: fixed;
   bottom: 0;
+  margin: 1vw 0 0 0;
 }
 
 .footerElement {
@@ -131,4 +159,42 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@media only screen and (max-width:600px) {
+  main {
+    display: flex;
+    justify-content: center;
+  }
+
+  #search-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url(./assets/images/hexagon-3736091.png);
+    background-size: 120vh;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: -215vw;
+  }
+
+  .form {
+    width: 70vw;
+    margin: 1vh 0;
+  }
+
+  #album-container {
+    width: 70vw;
+  }
+
+  #under-form {
+    background: none;
+    height: 3%;
+  }
+
+  .footerElement {
+    width: 23vw;
+  }
 }
