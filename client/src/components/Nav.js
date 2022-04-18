@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import logo from "../assets/images/beethub.JPG";
+import logo from "../assets/images/beathub22";
 
 import Auth from '../utils/auth'
 
