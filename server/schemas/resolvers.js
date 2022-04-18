@@ -57,19 +57,6 @@ const resolvers = {
             return { token, user }
         },
 
-        favorites: async (parent, args, context) => {
-            if (context.user) {
-                console.log(args);
-                const user = await User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $push: { favorites: { ...args } } },
-                    { new: true, runValidators: true }
-                )
-                return { token, user };
-            }
-        },
-        
-
         // check the validity of the email and the password
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });

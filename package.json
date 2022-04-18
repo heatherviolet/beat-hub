@@ -22,5 +22,9 @@
   "homepage": "https://github.com/heatherviolet/beat-hub#readme",
   "devDependencies": {
     "concurrently": "^7.1.0"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.5.10",
+    "react-scripts": "^5.0.1"
   }
 }
