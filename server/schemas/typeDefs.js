@@ -44,6 +44,7 @@ const typeDefs = gql`
         getReviews: [Review]
         findAlbum(albumId: String!): Album
         user(username: String!): User
+        getCollection(id: ID): Collection
     }
 
     type Mutation {

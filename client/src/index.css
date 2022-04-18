@@ -31,6 +31,10 @@ h3 {
   padding: 15px;
 }
 
+.album-mini {
+  background-color: var(--react-bg-color);
+}
+
 .point:hover {
   cursor: pointer;
 }

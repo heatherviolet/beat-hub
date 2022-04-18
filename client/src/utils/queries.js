@@ -31,3 +31,15 @@ export const FIND_ALBUM = gql`
         }
     }
 `;
+
+export const GET_COLLECTION = gql`
+    query getCollection($id: ID) {
+        getCollection(id: $id) {
+            name
+            albumCollection {
+                name
+                cover
+            }
+        }
+    }
+`;

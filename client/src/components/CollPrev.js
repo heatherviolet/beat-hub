@@ -4,7 +4,7 @@ import empty from '../assets/images/addtoempty.png'
 
 import { useMutation } from '@apollo/client';
 
-import { ADD_ALBUM, ADD_TO_COLLECTION } from '../utils/mutations';
+import { ADD_TO_COLLECTION } from '../utils/mutations';
 
 export default function CollPrev({ collection, _id }) {
     const [addToCollection, { collError }] = useMutation(ADD_TO_COLLECTION);
@@ -15,7 +15,7 @@ export default function CollPrev({ collection, _id }) {
                 variables: { collId: collection._id, albumId: _id },
             }).then(() => {
                 setTimeout(() => {
-                    window.location.assign('/profile');
+                    window.location.assign(`/collection/${collection._id}`);
                 }, 500)
             })
         }  
