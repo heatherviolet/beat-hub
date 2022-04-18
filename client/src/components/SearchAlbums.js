@@ -78,7 +78,15 @@ export default function SearchAlbums({ album }) {
                                         >Favorite</Button>
                             </ListGroupItem>
                         </ListGroup>
+                        <ListGroup>
+                            <ListGroupItem>
+                                <Button className="btn btn-danger" 
+                                        onClick={() => { cacheAlbum() }}
+                                        >Review</Button>
+                            </ListGroupItem>
+                        </ListGroup>
                     </>
+                    
                 ) : (
                     <h3>Login to to use BeetHub!</h3>
                 )}
