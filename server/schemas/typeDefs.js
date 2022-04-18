@@ -26,7 +26,8 @@ const typeDefs = gql`
         _id: ID
         albumId: String
         body: String
-        rating: Int
+        rating: Float
+        author: String
     }
 
     type Collection {
@@ -50,6 +51,9 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addAlbum(albumId: String, name: String, artists: [String], cover: String, year: Int): Album
         addFavorite(id: ID): User
+        addReview(albumId: String, body: String, rating: Float): Review
+        createCollection(name: String): Collection
+        addToCollection(collId: ID, albumId: ID): Collection
         drop: Boolean
     }
 

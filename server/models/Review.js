@@ -5,8 +5,7 @@ const reviewSchema = new Schema(
     {
         albumId: {
             type: String,
-            required: true,
-            unique: true
+            required: true
         },
         body: {
             type: String,
@@ -14,6 +13,10 @@ const reviewSchema = new Schema(
         },
         rating: {
             type: Number,
+            required: true
+        },
+        author: {
+            type: String,
             required: true
         }
     },

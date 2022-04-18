@@ -2,23 +2,20 @@ import React from 'react'
 
 import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
-import { FIND_ALBUM } from '../utils/queries';
 import { ADD_ALBUM, ADD_FAVORITE } from '../utils/mutations';
 
-import { QUERY_ME } from '../utils/queries';
+import { QUERY_ME, FIND_ALBUM } from '../utils/queries';
 
 import { useQuery, useMutation } from '@apollo/client';
 
 import Auth from '../utils/auth';
 
 export default function SearchAlbums({ album }) {
-    const { loadingAlbum, dataAlbum } = useQuery(FIND_ALBUM, {
+    const { loadingAlbum, data, refetch } = useQuery(FIND_ALBUM, {
         variables: { albumId: album.albumId }
     });
 
-    const { loadingMe, dataMe } = useQuery(QUERY_ME);
-
-    const me = dataMe?.me;
+    console.log(data?.findAlbum);
 
     const [addAlbum, { albumError }] = useMutation(ADD_ALBUM);
     const [addFavorite, { favoriteError }] = useMutation(ADD_FAVORITE);
@@ -26,19 +23,23 @@ export default function SearchAlbums({ album }) {
     const cacheAlbum = async () => {
         // add the album to our database
         try {
-            const promise = await addAlbum({
-                variables: {
-                    name: album.name,
-                    albumId: album.albumId,
-                    artists: album.artists.items.map(data => data.profile.name),
-                    cover: album.cover,
-                    year: album.year
-                }
-            })
-
-            return promise.data.addAlbum._id;
+            if (!data.findAlbum) {
+                await addAlbum({
+                    variables: {
+                        name: album.name,
+                        albumId: album.albumId,
+                        artists: album.artists.items.map(data => data.profile.name),
+                        cover: album.cover,
+                        year: album.year
+                    }
+                }).then(promise => {
+                    addToFavorites(promise.data.addAlbum._id).then(refetch())
+                })
+            } else {
+                addToFavorites(data?.findAlbum?._id).then(refetch());
+            }
         } catch (err) {
-            console.log(err)
+            console.log(err);
         }
     };
 
@@ -46,7 +47,7 @@ export default function SearchAlbums({ album }) {
         try {
             await addFavorite({
                 variables: { id: id }
-            })
+            }).then(console.log('Added to favorites!'))
         } catch (err) {
             console.error(err)
         }
@@ -73,7 +74,7 @@ export default function SearchAlbums({ album }) {
                         <ListGroup>
                             <ListGroupItem>
                                 <Button className="btn btn-danger" 
-                                        onClick={() => { cacheAlbum().then(addToFavorites) }}
+                                        onClick={() => { cacheAlbum() }}
                                         >Favorite</Button>
                             </ListGroupItem>
                         </ListGroup>
