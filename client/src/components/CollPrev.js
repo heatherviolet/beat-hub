@@ -2,11 +2,9 @@ import React from 'react'
 
 import empty from '../assets/images/addtoempty.png'
 
-import { useQuery, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 
 import { ADD_ALBUM, ADD_TO_COLLECTION } from '../utils/mutations';
-
-import { FIND_ALBUM } from '../utils/queries';
 
 export default function CollPrev({ collection, _id }) {
     const [addToCollection, { collError }] = useMutation(ADD_TO_COLLECTION);

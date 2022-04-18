@@ -9,8 +9,6 @@ import { QUERY_ME, FIND_ALBUM } from '../utils/queries';
 
 import { Redirect, useParams } from 'react-router-dom';
 
-import { Button } from "react-bootstrap";
-
 import { Link } from 'react-router-dom';
 
 import CollPrev from '../components/CollPrev';
@@ -47,7 +45,7 @@ export default function AddTo() {
                 )) : (
                     <>
                         <div style={{display: 'block'}}>
-                            <Link to='/addcollection'>
+                            <Link to={`/addcol/${albumId}`}>
                                 <h2>Add your first collection!</h2>
                             </Link>
                         </div>
