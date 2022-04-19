@@ -35,7 +35,6 @@ export default function Search() {
       }));
 
       setSearchedAlbums(albumData);
-      console.log(albumData);
       setSearchInput("");
     } catch (err) {
       console.error(err);
@@ -64,7 +63,6 @@ export default function Search() {
       </Form>
       <div>
         {searchedAlbums.length ? searchedAlbums.map((album, i) => {
-          console.log(album)
           return <SearchAlbums key={i} album={album}/>
         }) : ""}
       </div>

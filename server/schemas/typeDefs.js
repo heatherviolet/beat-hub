@@ -20,13 +20,15 @@ const typeDefs = gql`
         year: Int
         reviews: [Review]
         favoritedBy: [User]
+        averageRating: Float
     }
 
     type Review {
         _id: ID
         albumId: String
         body: String
-        rating: Int
+        rating: Float
+        author: String
     }
 
     type Collection {
@@ -43,6 +45,7 @@ const typeDefs = gql`
         getReviews: [Review]
         findAlbum(albumId: String!): Album
         user(username: String!): User
+        getCollection(id: ID): Collection
     }
 
     type Mutation {
@@ -50,6 +53,9 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addAlbum(albumId: String, name: String, artists: [String], cover: String, year: Int): Album
         addFavorite(id: ID): User
+        addReview(albumId: String, body: String, rating: Float): Review
+        createCollection(name: String): Collection
+        addToCollection(collId: ID, albumId: ID): Collection
         drop: Boolean
     }
 
