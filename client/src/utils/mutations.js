@@ -77,4 +77,11 @@ import { gql } from '@apollo/client';
  `;
 
  export const WRITE_REVIEW = gql`
+    mutation addReview($albumId: String, $body: String, $rating: Float) {
+        addReview(albumId: $albumId, body: $body, rating: $rating) {
+            albumId
+            body
+            author
+        }
+    }
  `;

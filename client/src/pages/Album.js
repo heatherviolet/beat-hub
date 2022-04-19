@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
 import { FIND_ALBUM } from '../utils/queries';
+import { WRITE_REVIEW } from '../utils/mutations'
 
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 
 import { useParams } from 'react-router-dom';
 
@@ -12,14 +13,17 @@ export default function Album() {
     const { albumId: albumId } = useParams();
     const [score, setScore] = useState('Score');
     const [body, setBody] = useState('');
+    const [writeReview, { error }] = useMutation(WRITE_REVIEW);
 
     console.log(albumId);
 
-    const { loading, data } = useQuery(FIND_ALBUM, {
+    const { loading, data, refetch } = useQuery(FIND_ALBUM, {
         variables: { albumId: albumId }
     })
 
     const album = data?.findAlbum;
+
+    console.log(album);
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
@@ -28,8 +32,13 @@ export default function Album() {
             console.log(score);
             console.log(body)
 
-            setScore('Score')
-            setBody('')
+            await writeReview({
+                variables: { albumId: albumId, body: body, rating: score}
+            }).then(() => {
+                setScore('Score');
+                setBody('');
+                refetch();
+            })
         }
         
     }
@@ -44,7 +53,7 @@ export default function Album() {
                         {album?.artists?.map((artist, i) => {
                             return <h4 key={i}>{artist}</h4>
                         })}
-                        {album?.reviews?.length ? (
+                        {(album?.reviews?.length > 0) ? (
                             <h4>Rating: {album?.averageRating}/5</h4>
                         ) : (
                             <h4>Rating: N/A</h4>
