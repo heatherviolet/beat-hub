@@ -50,11 +50,15 @@ const albumSchema = new Schema(
 albumSchema.virtual('averageRating').get(function() {
     let totalRating = 0;
 
-    for (let i = 0; i < this.reviews.length; i++) {
-        totalRating += this.reviews[i].rating;
-    }
+    if (this.reviews.length) {
+        for (let i = 0; i < this.reviews.length; i++) {
+            totalRating += this.reviews[i].rating;
+        }
 
-    return (totalRating/this.reviews.length);
+        return (totalRating/this.reviews.length).toFixed(1);
+    } else {
+        return totalRating;
+    }
 });
 
 const Album = model('Album', albumSchema);
