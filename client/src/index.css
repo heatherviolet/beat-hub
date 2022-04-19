@@ -258,15 +258,15 @@ code {
     monospace;
 }
 
-.collection-card {
+/* .collection-card {
   display: flex;
   justify-content: center;
   flex-direction: column;
-}
+} */
 
-.collection-card-header {
+/* .collection-card-header {
   text-align: center;
-}
+} */
 
 @media only screen and (max-width:600px) {
   main {

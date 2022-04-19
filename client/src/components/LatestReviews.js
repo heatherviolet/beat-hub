@@ -1,5 +1,6 @@
 import React from 'react'
-import AlbumReview from '../components/AlbumReview'
+import Review from '../components/profile/review';
+
 import {  Card } from "react-bootstrap";
 
 
@@ -8,12 +9,12 @@ export default function LatestReviews({reviews}) {
         <>
     
             { reviews ? (
-
-                <Card className='reviews-container'>
-                    { reviews?.map(review=> (
-                        <AlbumReview review={review} key={review._id}/>
-                    ))}
-                </Card>
+                <div className='reviews-container'>
+                    <h1>Check Out The Latest Reviews!</h1>
+                        { reviews?.map((review, i)=> (
+                            <Review key={i} review={review}/>
+                        ))}
+                </div>
     
                 ) : ( <div>there are no reviews in database </div> )
             
