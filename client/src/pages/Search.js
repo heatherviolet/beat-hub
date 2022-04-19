@@ -66,7 +66,6 @@ export default function Search() {
       <div id="album-container">
         {searchedAlbums.length
           ? searchedAlbums.map((album, i) => {
-              console.log(album);
               return <SearchAlbums key={i} album={album} id={album.albumId} />;
             })
           : ""}

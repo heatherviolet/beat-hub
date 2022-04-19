@@ -23,8 +23,6 @@ export default function SearchAlbums({ album, id }) {
 
     const {loading:meLoading, data:meData} = useQuery(QUERY_ME);
 
-    console.log(data?.findAlbum);
-
     const addToFavorites = async (id) => {
       try {
           await addFavorite({
@@ -82,7 +80,7 @@ export default function SearchAlbums({ album, id }) {
     };
 
     let idExists = false;
-    !meLoading && console.log("meData", meData);
+
     const favorites = !meLoading && meData.me.favorites;
   
 

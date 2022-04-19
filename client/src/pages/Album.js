@@ -16,9 +16,7 @@ export default function Album() {
     const [writeReview, { error }] = useMutation(WRITE_REVIEW);
     const { loading: meLoading, data: meData, refetch: refetchMe } = useQuery(QUERY_ME);
 
-    console.log(albumId);
-
-    const { loading, data, refetch } = useQuery(FIND_ALBUM, {
+    const { data, refetch } = useQuery(FIND_ALBUM, {
         variables: { albumId: albumId }
     })
 
@@ -29,8 +27,6 @@ export default function Album() {
 
         try {
             if (body !== '' && score !== 'Score') {
-                console.log(score);
-                console.log(body)
 
                 await writeReview({
                     variables: { albumId: albumId, body: body, rating: score }
