@@ -24,9 +24,9 @@ export default function Navigate() {
       className="d-flex w-100 justify-content-center py-0"
       id="navbar"
     >
-      <Container className="navContainer d-flex justify-content-start">
+      <Container className="navContainer d -flex justify-content-start">
         <Navbar.Brand as={Link} to="/" className="px-3">
-          <img
+          <img 
             alt=""
             src={logo}
             width="30"
