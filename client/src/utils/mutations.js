@@ -50,3 +50,28 @@ import { gql } from '@apollo/client';
         }
     }
  `;
+
+ export const CREATE_COLLECTION = gql`
+    mutation createCollection($name: String) {
+        createCollection(name: $name) {
+            name
+            albumCollection {
+                _id
+                name
+            }
+        }
+    }
+ `;
+
+ export const ADD_TO_COLLECTION = gql`
+    mutation addToCollection($collId: ID, $albumId: ID) {
+        addToCollection(collId: $collId, albumId: $albumId) {
+            name
+            albumCollection {
+                _id
+                albumId
+                name
+            }
+        }
+    }
+ `;

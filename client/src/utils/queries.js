@@ -8,6 +8,10 @@ export const QUERY_ME = gql`
             email
             collections {
                 _id
+                name
+                albumCollection {
+                    cover
+                }
             }
             reviews {
                 _id
@@ -25,6 +29,18 @@ export const FIND_ALBUM = gql`
         findAlbum(albumId: $albumId) {
             _id
             name
+        }
+    }
+`;
+
+export const GET_COLLECTION = gql`
+    query getCollection($id: ID) {
+        getCollection(id: $id) {
+            name
+            albumCollection {
+                name
+                cover
+            }
         }
     }
 `;
