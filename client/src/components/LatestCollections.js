@@ -1,8 +1,5 @@
 import React from 'react'
 import Collection from '../components/profile/collection';
-import {  Card } from "react-bootstrap";
-
-
 
 export default function LatestCollections({ collections }) {
   return (

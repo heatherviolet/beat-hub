@@ -10,8 +10,9 @@ import { GET_COLLECTIONS } from '../utils/queries'
 
 export default function Home() {
 
-  const { data:loadingReviews, data:reviewsData } = useQuery(GET_REVIEWS);
+  const { loading:loadingReviews, data:reviewsData } = useQuery(GET_REVIEWS);
   const reviews = reviewsData?.getReviews;
+  console.log(reviews);
 
   const { loading:loadingCollections, data:collectionsData } = useQuery(GET_COLLECTIONS);
   const collections = collectionsData?.getCollections;

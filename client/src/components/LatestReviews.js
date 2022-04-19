@@ -1,9 +1,6 @@
 import React from 'react'
 import Review from '../components/profile/review';
 
-import {  Card } from "react-bootstrap";
-
-
 export default function LatestReviews({reviews}) {
     return (
         <>
