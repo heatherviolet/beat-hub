@@ -15,6 +15,9 @@ export const QUERY_ME = gql`
             }
             reviews {
                 _id
+                albumId
+                body
+                rating
             }
             favorites {
                 _id

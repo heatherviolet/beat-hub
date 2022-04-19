@@ -34,7 +34,10 @@ export default function Profile() {
             variables: { name: nameInput }
         }).then(setNameInput(""));
 
-        refetch();
+        setTimeout(() => {
+          refetch();
+        }, 500)
+        
     }
   };
 
@@ -49,8 +52,6 @@ export default function Profile() {
   const select = (value) => {
     setSelectedNav(value);
   };
-
-  refetch();
 
   return (
     // conditionally render the user profile
@@ -116,7 +117,7 @@ export default function Profile() {
               <>
                 <h1 align="center">Reviews</h1>
                 {user.reviews.map((review, i) => {
-                  return <Review review={review}/>
+                  return <Review key={i} review={review}/>
                 })}
               </>
             ) : (

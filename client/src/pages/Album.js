@@ -28,23 +28,27 @@ export default function Album() {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
-        if (body !== '' && score !== 'Score') {
-            console.log(score);
-            console.log(body)
+        try {
+            if (body !== '' && score !== 'Score') {
+                console.log(score);
+                console.log(body)
 
-            await writeReview({
-                variables: { albumId: albumId, body: body, rating: score}
-            }).then(() => {
-                setScore('Score');
-                setBody('');
-                refetch();
-            })
+                await writeReview({
+                    variables: { albumId: albumId, body: body, rating: score }
+                }).then(() => {
+                    setScore('Score');
+                    setBody('');
+                    refetch();
+                })
+            }
+        } catch (err) {
+            console.error(err);
         }
         
     }
 
     return (
-        <div className="mx-auto">
+        <div className="mx-auto" style={{maxWidth: "500px"}}>
             <div>
                 <div className="albumWrap d-flex flex-wrap">
                     <img width="300px" height="300px" src={album?.cover} className="mx-auto"></img>
