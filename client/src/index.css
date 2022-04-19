@@ -13,6 +13,21 @@ h3 {
   color: var(--cream-color);
 }
 
+.profile-nav p {
+  margin: 0px;
+  padding: 5px 10px;
+}
+
+.profile-nav p:hover {
+  cursor: pointer;
+}
+
+.selectedProfileNav {
+  background-color: var(--accent-color);
+  border-radius: 30px;
+  color: var(--main-bg-color)
+}
+
 .collection-back {
   background-color: var(--main-bg-color);
   margin: 20px;
