@@ -1,19 +1,16 @@
 import React from 'react'
-import Album from './Album'
+//import Album from './Album'
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
 
-export default function AlbumReview() {
+export default function Collection() {
 
-  // grabs  users reviews
-
-  // displays users reviews
   return (
     <>
       <Card>
+          {/* grab users collections */}
+          {/* map every collection to grab collection name  from "name" and albums from "albumCollection" */}
         {/* <Album album={album} key={album.data.uri}/> */}
-        <div>Username</div>
-        <div>Album Review</div>
       </Card>
       
     </>

@@ -2,6 +2,8 @@ const { User, Album, Collection, Review } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
+const db = require('../config/connection');
+
 // queries and mutations
 const resolvers = {
     Query: {
@@ -11,29 +13,35 @@ const resolvers = {
                                             .select('-__v -password')
                                             .populate('collections')
                                             .populate('reviews')
-                                            .populate('favorites')
+                                            .populate('favorites');
                 return userData;
             }
 
             throw new AuthenticationError('Not logged in');
         },
         getUsers: async () => {
-            const data = User.find().select('-__v -password');
+            const data = User.find().select('-__v -password')
+                                    .populate('favorites');
 
             return data;
         },
         getAlbums: async () => {
-            const data = Album.find();
+            const data = Album.find().populate('favoritedBy');
 
             return data;
         },
         getCollections: async () => {
-            const data = Collection.find();
+            const data = Collection.find().sort({ createdAt: -1 });
 
             return data;
         },
         getReviews: async () => {
-            const data = Review.find();
+            const data = Review.find().sort({ createdAt: -1 });
+
+            return data;
+        },
+        findAlbum: async (parent, { albumId }) => {
+            const data = Album.findOne({ albumId: albumId })
 
             return data;
         }
@@ -66,6 +74,45 @@ const resolvers = {
             // sign the token
             const token = signToken(user);
             return { token, user };
+        },
+
+        addAlbum: async (parent, { name, albumId, artists, cover, year }) => {
+            const album = await Album.create({ 
+                name: name,
+                albumId: albumId,
+                artists: artists,
+                cover: cover,
+                year: year
+            })
+
+            return album;
+        },
+
+        addFavorite: async (parent, { id }, context) => {
+            console.log(id)
+
+            // find a user and update
+            const user = await User.findOneAndUpdate(
+                { _id: context.user._id },
+                { $addToSet: { favorites: id } },
+                { new: true, runValidators: true }
+            ).populate('favorites');
+
+            // find an album and update it
+            await Album.findOneAndUpdate(
+                { _id: id },
+                { $addToSet: { favoritedBy: context.user._id } },
+                { new: true, runValidators: true }
+            ).populate('favoritedBy');
+
+            return user;
+        },
+
+        // experimental
+        drop: async () => {
+            db.dropDatabase();
+
+            return true;
         }
     }
 }

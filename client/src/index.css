@@ -69,6 +69,27 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.footerMain {
+  background-color: var(--main-bg-color);
+  font-size: 1.3rem;
+  width: 100vw;
+  padding: 1.35vw;
+  position: fixed;
+  bottom: 0;
+}
+
+.footerElement {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  background-color: var(--tertiary-bg-color);
+  width: 10vw;
+  height: 3rem;
+  border: 4px inset var(--cream-color);
+  border-radius: 10px;
+  margin: 0 1.2rem;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

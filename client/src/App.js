@@ -14,11 +14,11 @@ import {
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
-import Footer from "./components/Footer"
+import Footer from "./components/Footer";
 
 // establish graphql uri
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: '/graphql',
 });
 
 // get the token from local storage if it exists
@@ -54,17 +54,17 @@ function App() {
             </div>
           </header>
           <main className="d-flex justify-content-start px-4">
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/search" component={Search} />
-            <Route exact path="/profile" component={Profile} />
-          </Switch>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/search" component={Search} />
+              <Route exact path="/profile" component={Profile} />
+            </Switch>
           </main>
+          <Footer />
         </div>
       </Router>
-      <Footer />
     </ApolloProvider>
   );
 }
