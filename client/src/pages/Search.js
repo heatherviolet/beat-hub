@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { searchSpotify } from "../utils/API";
-import sampleData from "../data-sample.json";
 
 import SearchAlbums from "../components/SearchAlbums";
 
@@ -17,7 +16,7 @@ export default function Search() {
     }
     // await searchSpotify(searchInput);
     try {
-      const response = sampleData;
+      const response = await searchSpotify(searchInput);;
       if (!response) {
         throw new Error("something went wrong!");
       }
