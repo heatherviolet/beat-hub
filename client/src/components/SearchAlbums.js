@@ -8,11 +8,11 @@ import { QUERY_ME, FIND_ALBUM } from "../utils/queries";
 
 import { useQuery, useMutation } from '@apollo/client'
 
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import Auth from "../utils/auth";
 
-export default function SearchAlbums({ album }) {
+export default function SearchAlbums({ album, id }) {
 
     const [responseAddTo, setResponseAddTo] = useState(false);
 
@@ -41,7 +41,7 @@ export default function SearchAlbums({ album }) {
                     }
                 }).then(promise => {
                     if (action === 'favorite') {
-                        addToFavorites(promise.data.addAlbum._id).then(refetch())
+                        addFavorite(promise.data.addAlbum._id).then(refetch())
                     }
 
                     if (action === 'addTo') {
@@ -50,7 +50,7 @@ export default function SearchAlbums({ album }) {
                 })
             } else {
                 if (action === 'favorite') {
-                    addToFavorites(data?.findAlbum?._id).then(refetch());
+                    addFavorite(data?.findAlbum?._id).then(refetch());
                 }
 
                 if (action === 'addTo') {
@@ -80,8 +80,8 @@ export default function SearchAlbums({ album }) {
     }
     
     return (
-        <Card style={{ width: "18rem" }}>
-            <Card.Img variant="top" src={album.cover} />
+        <Card className="albumCard d-flex align-align-content-end">
+            <Card.Img variant="top" src={album.cover} alt={album.name} />
             <Card.Body>
                 <Card.Title>{album.name}</Card.Title>
                 <Card.Text>{album.year}</Card.Text>
