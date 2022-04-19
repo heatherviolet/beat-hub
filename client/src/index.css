@@ -9,7 +9,8 @@
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   color: var(--cream-color);
 }
 
@@ -20,6 +21,28 @@ h3 {
 
 .profile-nav p:hover {
   cursor: pointer;
+}
+
+.profile-coll-form {
+  padding: 10px;
+  background-color: var(--react-bg-color);
+  border-radius: 10px;
+}
+
+.profile-coll-form button {
+  margin-top: 8px;
+  display: block;
+}
+
+.profile-coll-form label {
+  color: var(--cream-color);
+  display: block;
+}
+
+.albumWrap {
+  background-color: var(--react-bg-color);
+  padding: 25px;
+  border-radius: 20px;
 }
 
 .selectedProfileNav {

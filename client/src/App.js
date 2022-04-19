@@ -18,6 +18,7 @@ import Footer from "./components/Footer";
 import AddTo from './pages/AddTo';
 import AddCollection from './pages/AddCollection'
 import Collection from "./pages/Collection";
+import Album from './pages/Album';
 
 // establish graphql uri
 const httpLink = createHttpLink({
@@ -59,6 +60,7 @@ function App() {
               <Route exact path="/addto/:albumId" component={AddTo} />
               <Route exact path="/addcollection" component={AddCollection} />
               <Route exact path="/collection/:id" component={Collection} />
+              <Route exact path="/album/:albumId" component={Album} />
             </Switch>
           </main>
           <Footer />
