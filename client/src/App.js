@@ -15,6 +15,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import Footer from "./components/Footer";
+import Review from "./pages/Review";
 
 // establish graphql uri
 const httpLink = createHttpLink({
@@ -53,6 +54,7 @@ function App() {
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/search" component={Search} />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/review" component={Review} />
             </Switch>
           </main>
           <Footer />
