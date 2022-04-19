@@ -52,6 +52,7 @@ const resolvers = {
         },
         findAlbum: async (parent, { albumId }) => {
             const data = await Album.findOne({ albumId: albumId })
+                                    .populate('reviews');
 
             console.log(data)
 

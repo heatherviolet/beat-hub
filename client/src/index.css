@@ -9,8 +9,72 @@
 
 h1,
 h2,
-h3 {
+h3,
+h4,
+i {
   color: var(--cream-color);
+}
+
+.reviews {
+  margin: 10px 0px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: var(--react-bg-color);
+  color: var(--cream-color);
+}
+
+.revBody {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--main-bg-color);
+}
+
+.good button,
+.good {
+  color: rgb(0, 206, 0);
+}
+
+.bad button,
+.bad {
+  color: red;
+}
+
+.profile-nav p {
+  margin: 0px;
+  padding: 5px 10px;
+}
+
+.profile-nav p:hover {
+  cursor: pointer;
+}
+
+.profile-coll-form,
+.reviewForm {
+  padding: 10px;
+  background-color: var(--react-bg-color);
+  border-radius: 10px;
+}
+
+.profile-coll-form button {
+  margin-top: 8px;
+  display: block;
+}
+
+.profile-coll-form label {
+  color: var(--cream-color);
+  display: block;
+}
+
+.albumWrap {
+  background-color: var(--react-bg-color);
+  padding: 25px;
+  border-radius: 20px;
+}
+
+.selectedProfileNav {
+  background-color: var(--accent-color);
+  border-radius: 30px;
+  color: var(--main-bg-color)
 }
 
 .collection-back {
