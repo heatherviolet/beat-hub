@@ -8,7 +8,7 @@ import { QUERY_ME, FIND_ALBUM } from "../utils/queries";
 
 import { useQuery, useMutation } from '@apollo/client'
 
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import Auth from "../utils/auth";
 
@@ -23,6 +23,16 @@ export default function SearchAlbums({ album, id }) {
     const {loading:meLoading, data:meData} = useQuery(QUERY_ME);
 
     console.log(data?.findAlbum);
+
+    const addToFavorites = async (id) => {
+      try {
+          await addFavorite({
+              variables: { id: id }
+          }).then(console.log('Added to favorites!'))
+      } catch (err) {
+          console.error(err)
+      }
+  }
 
     const [addAlbum, { albumError }] = useMutation(ADD_ALBUM);
     const [addFavorite, { favoriteError }] = useMutation(ADD_FAVORITE);
@@ -41,7 +51,7 @@ export default function SearchAlbums({ album, id }) {
                     }
                 }).then(promise => {
                     if (action === 'favorite') {
-                        addFavorite(promise.data.addAlbum._id).then(refetch())
+                        addToFavorites(promise.data.addAlbum._id).then(refetch())
                     }
 
                     if (action === 'addTo') {
@@ -50,7 +60,7 @@ export default function SearchAlbums({ album, id }) {
                 })
             } else {
                 if (action === 'favorite') {
-                    addFavorite(data?.findAlbum?._id).then(refetch());
+                    addToFavorites(data?.findAlbum?._id).then(refetch());
                 }
 
                 if (action === 'addTo') {
