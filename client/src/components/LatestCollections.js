@@ -1,4 +1,5 @@
 import React from 'react'
+import CollectionCard from './CollectionCard';
 import {  Card } from "react-bootstrap";
 
 
@@ -8,13 +9,12 @@ export default function LatestCollections({ collections }) {
     <>
 
         { collections ? (
-            <Card className='collections-container'>
+            <div className='collections-container'>
+                <h1>Check Out The Latest Collections!</h1>
                 {collections?.map(collection=> (
-                    <Card key={collection?._id}>
-                        <h1>{collection?.name}</h1>
-                    </Card>
+                    <CollectionCard key={collection?._id} collection={collection} />
                 ))}
-            </Card>
+            </div>
 
             ) : ( <div>there are no collections in database </div> )
         }

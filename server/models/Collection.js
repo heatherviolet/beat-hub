@@ -11,11 +11,7 @@ const collectionSchema = new Schema(
                 type: Schema.Types.ObjectId,
                 ref: 'Album'
             }
-        ],
-        createAt: {
-            type: Date,
-            required: true
-        }
+        ]
     },
     {
         toJSON: {
