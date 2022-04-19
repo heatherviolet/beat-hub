@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
+import Auth from '../utils/auth';
+
 import { FIND_ALBUM, QUERY_ME } from '../utils/queries';
-import { WRITE_REVIEW } from '../utils/mutations'
+import { WRITE_REVIEW, ADD_FAVORITE } from '../utils/mutations'
 
 import { useQuery, useMutation } from '@apollo/client';
 
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect, Link } from 'react-router-dom';
 
 import { Form, Button, Dropdown, DropdownButton } from "react-bootstrap";
 
@@ -14,13 +16,20 @@ export default function Album() {
     const [score, setScore] = useState('Score');
     const [body, setBody] = useState('');
     const [writeReview, { error }] = useMutation(WRITE_REVIEW);
+    const [addFavorite, { error: favError }] = useMutation(ADD_FAVORITE);
     const { loading: meLoading, data: meData, refetch: refetchMe } = useQuery(QUERY_ME);
 
-    const { data, refetch } = useQuery(FIND_ALBUM, {
+    const { loading, data, refetch } = useQuery(FIND_ALBUM, {
         variables: { albumId: albumId }
     })
 
-    const album = data?.findAlbum;
+    const album = !loading && data.findAlbum;
+
+    const _id = !loading && data.findAlbum._id
+
+    if (!Auth.loggedIn()) {
+        return <Redirect to='/login'/>
+    }
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
@@ -46,9 +55,30 @@ export default function Album() {
     let reviewExists = false;
     const userReviews = !meLoading && meData.me.reviews;
 
+    let idExists = false;
+    const favorites = !meLoading && meData.me.favorites;
+  
+
+    for (let i = 0; i < favorites.length; i++) {
+        if (favorites[i].albumId !== albumId) {
+        } else {
+            idExists = true;
+        }
+    }
+
     for (let i = 0; i < userReviews.length; i++) {
         if (userReviews[i].albumId === albumId) {
             reviewExists = true;
+        }
+    }
+
+    const handleAddFav = async () => {
+        try {
+            await addFavorite({
+                variables: { id: _id }
+            }).then(console.log('Added to favorites!'))
+        } catch (err) {
+            console.error(err);
         }
     }
 
@@ -57,20 +87,32 @@ export default function Album() {
             <div>
                 <div className="albumWrap d-flex flex-wrap">
                     <img width="300px" height="300px" src={album?.cover} className="mx-auto"></img>
-                    <div style={{margin: '10px 20px', marginRight: '100px'}}>
-                        <h2>{album?.name}</h2>
-                        <h4 style={{marginTop: '20px'}}>Artists:</h4>
-                        {album?.artists?.map((artist, i) => {
-                            return <i key={i}>{artist} </i>
-                        })}
-                        <div style={{marginTop: '20px'}}>
-                            {(album?.reviews?.length) ? (
-                                <h4>Average Score: <i className={(album?.averageRating > 2) ? 'good' : 'bad'}>{album?.averageRating}/5</i></h4>
-                            ) : (
-                                <h4>Average Score: N/A</h4>
-                            )}
+                    <div style={{margin: '10px 20px', width: '100%'}}>
+                        <div style={{paddingRight: '100px'}}>
+                            <h2>{album?.name}</h2>
+                            <h4 style={{marginTop: '20px'}}>Artists:</h4>
+                            {album?.artists?.map((artist, i) => {
+                                return <i key={i}>{artist} </i>
+                            })}
+                            <div style={{marginTop: '20px'}}>
+                                {(album?.reviews?.length) ? (
+                                    <h4>Average Score: <i className={(album?.averageRating > 2) ? 'good' : 'bad'}>{album?.averageRating}/5</i></h4>
+                                ) : (
+                                    <h4>Average Score: N/A</h4>
+                                )}
+                            </div>
                         </div>
-                    </div>
+                        <div className="row mx-auto" style={{marginTop: '20px'}}>
+                            {!idExists && 
+                                <button onClick={() => handleAddFav()} className="btn btn-danger col">Favorite</button>
+                            }
+                            <Link className="col" style={{textDecoration: "none", color: "white", padding: "0px"}} to={`/addTo/${albumId}`}>
+                                <button className="btn btn-success" style={{width: '100%'}}>
+                                    Add to...
+                                </button>
+                            </Link>
+                        </div>
+                    </div> 
                 </div>
             </div>
             {!reviewExists && <div style={{marginTop: '20px'}} className="reviewForm">
