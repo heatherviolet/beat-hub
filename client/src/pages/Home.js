@@ -11,11 +11,11 @@ import { GET_COLLECTIONS } from '../utils/queries'
 export default function Home() {
 
   const { loadingReviews, reviewsData } = useQuery(GET_REVIEWS);
-  const reviews = reviewsData?.reviews || [];
+  const reviews = reviewsData?.getReviews || [];
   console.log(reviews);
 
   const { loadingCollections, collectionsData } = useQuery(GET_COLLECTIONS);
-  const collections = collectionsData;
+  const collections = collectionsData?.getCollections;
   console.log(collectionsData);
   
   return (
