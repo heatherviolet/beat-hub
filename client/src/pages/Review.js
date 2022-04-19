@@ -11,18 +11,17 @@ const ReviewForm = () => {
     // const [review, { error }] = useMutation(ADD_REVIEW);
 
 
-      const handleChange = (event) => {
-           const { review, value } = event.target;
+      // const handleChange = (event) => {
+      //      const { review, _id } = event.target;
       
-          setFormState({
-            ...formState,
-            [review]: value,
-          });
-        };
+      //     setReview({
+      //       [review]: _id,
+      //     });
+      //   };
       
-        // submit form
-        const handleFormSubmit = async (event) => {
-          event.preventDefault();
+      //   // submit form
+      //   const handleFormSubmit = async (event) => {
+      //     event.preventDefault();
       
         //   try {
         //     const { data } = await login({
@@ -38,35 +37,49 @@ const ReviewForm = () => {
         //   setFormState({
         //     email: '',
         //     password: '',
-        //   });
-        // };
+       //    });
+        //  };
       
         return (
-          <main className="flex-row justify-center mb-4">
-            <div className="col-12 col-md-6">
-              <div className="card">
-                <h4 className="card-header">Review</h4>
-                <div className="card-body">
-                  <form onSubmit={handleFormSubmit}>
-                    <input
-                      className="form-input"
-                      placeholder="Your review"
-                      name="review"
-                      type="text"
-                      id="_id"
-                      value={formState.review}
-                      onChange={handleChange}
-                    />
-                    <button className="btn d-block w-100" type="submit">
-                      Submit
-                    </button>
-                  </form>
-      
-                  {error && <div>Adding review failed</div>}
-                </div>
-              </div>
-            </div>
-          </main>
-        );
-      }; 
+          <div>
+             <input
+                className="form-input"
+                placeholder="Your review"
+                name="review"
+                type="text"
+                id="_id"
+                />
+          <button
+            type="submit"
+            >
+            Submit
+          </button>
+        </div>
+      );
+    }
+      //     <main className="flex-row justify-center mb-4">
+      //       <div className="col-12 col-md-6">
+      //         <div className="card">
+      //           <h4 className="card-header">Review</h4>
+      //           <div className="card-body">
+      //             <form onSubmit={handleFormSubmit}>
+      //               <input
+      //                 className="form-input"
+      //                 placeholder="Your review"
+      //                 name="review"
+      //                 type="text"
+      //                 id="_id"
+      //                 // value={formState.review}
+      //                 onChange={handleChange}
+      //               />
+      //               <button className="btn d-block w-100" type="submit">
+      //                 Submit
+      //               </button>
+      //             </form>
+      //           </div>
+      //         </div>
+      //       </div>
+      //     </main>
+      //   );
+      // }; 
 export default ReviewForm;
