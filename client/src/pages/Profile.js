@@ -15,7 +15,7 @@ import { CREATE_COLLECTION } from '../utils/mutations';
 
 import { useMutation } from '@apollo/client';
 
-
+import Review from '../components/profile/review';
 import Collection from '../components/profile/collection';
 import Favorite from '../components/profile/favorite';
 
@@ -33,6 +33,8 @@ export default function Profile() {
         await createCollection({
             variables: { name: nameInput }
         }).then(setNameInput(""));
+
+        refetch();
     }
   };
 
@@ -94,6 +96,7 @@ export default function Profile() {
                           type="text"
                           placeholder="Name your collection"
                           onChange={(e) => setNameInput(e.target.value)}
+                          value={nameInput}
                       />
                       <Button
                           variant="secondary"
@@ -113,7 +116,7 @@ export default function Profile() {
               <>
                 <h1 align="center">Reviews</h1>
                 {user.reviews.map((review, i) => {
-                  return <h1></h1>
+                  return <Review review={review}/>
                 })}
               </>
             ) : (
