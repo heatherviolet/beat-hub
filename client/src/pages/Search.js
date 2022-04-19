@@ -14,7 +14,7 @@ export default function Search() {
     if (!searchInput) {
       return false;
     }
-    // await searchSpotify(searchInput);
+
     try {
       const response = await searchSpotify(searchInput);
       if (!response) {

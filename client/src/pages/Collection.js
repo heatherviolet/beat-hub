@@ -12,7 +12,8 @@ export default function Collection() {
     const { id: id } = useParams();
 
     const { loading, data: collData, refetch } = useQuery(GET_COLLECTION, {
-        variables: { id: id }
+        variables: { id: id },
+        pollInterval: 500
     });
 
     const collection = collData?.getCollection;
@@ -25,7 +26,7 @@ export default function Collection() {
             <div className="d-flex flex-wrap justify-content-around">
                 {collection?.albumCollection.length ? (
                     collection?.albumCollection?.map((album, i) => {
-                        return <AlbumMini key={i} name={album.name} cover={album.cover}/>
+                        return <AlbumMini key={i} name={album.name} cover={album.cover} albumId={album.albumId} />
                     }).reverse()
                 ) : (
                     <h3>No albums yet.</h3>
