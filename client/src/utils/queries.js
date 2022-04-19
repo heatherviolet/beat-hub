@@ -32,6 +32,11 @@ export const FIND_ALBUM = gql`
             name
             cover
             artists
+            reviews {
+                rating
+                body
+                author
+            }
             averageRating
         }
     }

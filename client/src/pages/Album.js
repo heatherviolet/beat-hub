@@ -47,18 +47,20 @@ export default function Album() {
         <div className="mx-auto">
             <div>
                 <div className="albumWrap d-flex flex-wrap">
-                    <img width="300px" height="300px" src={album?.cover}></img>
+                    <img width="300px" height="300px" src={album?.cover} className="mx-auto"></img>
                     <div style={{margin: '10px 20px', marginRight: '100px'}}>
                         <h2>{album?.name}</h2>
+                        <h4 style={{marginTop: '20px'}}>Artists:</h4>
                         {album?.artists?.map((artist, i) => {
-                            return <h4 key={i}>{artist}</h4>
+                            return <i key={i}>{artist} </i>
                         })}
-                        {(album?.reviews?.length > 0) ? (
-                            <h4>Rating: {album?.averageRating}/5</h4>
-                        ) : (
-                            <h4>Rating: N/A</h4>
-                        )}
-                        
+                        <div style={{marginTop: '20px'}}>
+                            {(album?.reviews?.length) ? (
+                                <h4>Average Score: <i className={(album?.averageRating > 2) ? 'good' : 'bad'}>{album?.averageRating}/5</i></h4>
+                            ) : (
+                                <h4>Average Score: N/A</h4>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -91,6 +93,17 @@ export default function Album() {
                         </Button>
                     </Form.Group>
                 </Form>
+            </div>
+            <div>
+                {album?.reviews?.map((review, i) => {
+                    return (
+                        <div key={i} className="reviews">
+                            <h3>{review.author}</h3>
+                            <p>Rating: <i className={(review.rating > 2) ? 'good' : 'bad'}>{review.rating}/5</i></p>
+                            <i><p className="revBody">{review.body}</p></i>
+                        </div>
+                    )
+                }).reverse()}
             </div>
         </div>
     );

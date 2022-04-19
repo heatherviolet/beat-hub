@@ -10,15 +10,32 @@
 h1,
 h2,
 h3,
-h4 {
+h4,
+i {
   color: var(--cream-color);
 }
 
-.good button {
+.reviews {
+  margin: 10px 0px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: var(--react-bg-color);
+  color: var(--cream-color);
+}
+
+.revBody {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: var(--main-bg-color);
+}
+
+.good button,
+.good {
   color: rgb(0, 206, 0);
 }
 
-.bad button {
+.bad button,
+.bad {
   color: red;
 }
 
