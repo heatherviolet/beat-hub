@@ -75,3 +75,6 @@ import { gql } from '@apollo/client';
         }
     }
  `;
+
+ export const WRITE_REVIEW = gql`
+ `;

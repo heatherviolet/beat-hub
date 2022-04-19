@@ -14,6 +14,14 @@ h4 {
   color: var(--cream-color);
 }
 
+.good button {
+  color: rgb(0, 206, 0);
+}
+
+.bad button {
+  color: red;
+}
+
 .profile-nav p {
   margin: 0px;
   padding: 5px 10px;
@@ -23,7 +31,8 @@ h4 {
   cursor: pointer;
 }
 
-.profile-coll-form {
+.profile-coll-form,
+.reviewForm {
   padding: 10px;
   background-color: var(--react-bg-color);
   border-radius: 10px;
