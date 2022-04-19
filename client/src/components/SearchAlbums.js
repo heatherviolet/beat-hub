@@ -19,7 +19,7 @@ export default function SearchAlbums({ album }) {
 
     const [addAlbum, { albumError }] = useMutation(ADD_ALBUM);
     const [addFavorite, { favoriteError }] = useMutation(ADD_FAVORITE);
-    const [addReview] = useMutation(ADD_REVIEW);
+    const [addReview, { error }] = useMutation(ADD_REVIEW);
 
     const cacheAlbum = async () => {
         // add the album to our database
@@ -54,10 +54,10 @@ export default function SearchAlbums({ album }) {
         }
     }
 
-    const reviewAlbum = async (id) => {
+    const reviewAlbum = async (_id) => {
         try {
             await addReview({
-                variables: { id: id }
+                variables: { id: _id }
             }).then(console.log('Added review!'))
         } catch (err) {
             console.error(err)
