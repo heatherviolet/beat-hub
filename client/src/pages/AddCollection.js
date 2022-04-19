@@ -31,29 +31,44 @@ export default function AddCollection() {
     return (
         <div className="mx-auto">
             <h1>Add a collection!</h1>
-            <Form className="form" onSubmit={handleFormSubmit}>
-                <Form.Group className="searchForm mb-3">
-                    <Form.Label>Collection name:</Form.Label>
-                    <Form.Control
+            <form onSubmit={handleFormSubmit}
+                    style={{backgroundColor: '#282c34',
+                            padding: '20px',
+                            borderRadius: '15px'}}>
+                <div className="searchForm mx-0" style={{width: '400px'}}>
+                    <p style={{color: 'white'}}>Collection name:</p>
+                    <input
                         type="text"
                         placeholder="Name your collection"
                         onChange={(e) => setNameInput(e.target.value)}
+                        style={{color: 'white',
+                                width: '100%',
+                                backgroundColor: '#32434d',
+                                border: 'none',
+                                padding: '5px',
+                                borderRadius: '5px'
+                            }}
                     />
                     {success ? (
                         <p>Collection added!</p>
                     ) : (
                         <p></p>
                     )}
-                    <Button
-                        variant="secondary"
+                    <button
                         type="submit"
-                        className="button py-2 my-3"
                         disabled={success}
-                    >
+                        style={{
+                            color: '#32434d',
+                            border: 'none',
+                            padding: '5px',
+                            backgroundColor: '#DCF763',
+                            borderRadius: '5px',
+                            marginTop: '10px'
+                        }}>
                         Submit
-                    </Button>
-                </Form.Group>
-            </Form>
+                    </button>
+                </div>
+            </form>
         </div>
     );
 }

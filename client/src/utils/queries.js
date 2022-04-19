@@ -28,6 +28,34 @@ export const QUERY_ME = gql`
     }
 `;
 
+export const QUERY_USER = gql`
+    query user($username: String!) {
+        user(username: $username) {
+            _id
+            username
+            email
+            collections {
+                _id
+                name
+                albumCollection {
+                    cover
+                }
+            }
+            reviews {
+                _id
+                albumId
+                body
+                rating
+            }
+            favorites {
+                _id
+                albumId
+                cover
+            }
+        }
+    }
+`;
+
 export const FIND_ALBUM = gql`
     query findAlbum($albumId: String!) {
         findAlbum(albumId: $albumId) {

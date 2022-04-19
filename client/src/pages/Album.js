@@ -149,7 +149,9 @@ export default function Album() {
                 {album?.reviews?.map((review, i) => {
                     return (
                         <div key={i} className="reviews">
-                            <h3>{review.author}</h3>
+                            <Link to={`/profile/${review.author}`}>
+                                <h3>{review.author}</h3>
+                            </Link>
                             <p>Rating: <i className={(review.rating > 2) ? 'good' : 'bad'}>{review.rating}/5</i></p>
                             <i><p className="revBody">{review.body}</p></i>
                         </div>
