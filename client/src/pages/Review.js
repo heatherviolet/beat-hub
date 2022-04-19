@@ -7,12 +7,12 @@ import Auth from '../utils/auth';
 import { ADD_REVIEW } from '../utils/mutations';
 
 const ReviewForm = () => {
-    const [formState, setFormState] = useState({ album: '', author: '', rating: '' });
-    const [review, { error }] = useMutation(ADD_REVIEW);
+    const [review, setReview] = useState('');
+    // const [review, { error }] = useMutation(ADD_REVIEW);
 
 
-        const handleChange = (event) => {
-          const { review, value } = event.target;
+      const handleChange = (event) => {
+           const { review, value } = event.target;
       
           setFormState({
             ...formState,
@@ -24,22 +24,22 @@ const ReviewForm = () => {
         const handleFormSubmit = async (event) => {
           event.preventDefault();
       
-          try {
-            const { data } = await login({
-              variables: { ...formState },
-            });
+        //   try {
+        //     const { data } = await login({
+        //       variables: { ...formState },
+        //     });
       
-            Auth.login(data.login.token);
-          } catch (e) {
-            console.error(e);
-          }
+        //     Auth.login(data.login.token);
+        //   } catch (e) {
+        //     console.error(e);
+        //   }
       
-          // clear form values
-          setFormState({
-            email: '',
-            password: '',
-          });
-        };
+        //   // clear form values
+        //   setFormState({
+        //     email: '',
+        //     password: '',
+        //   });
+        // };
       
         return (
           <main className="flex-row justify-center mb-4">
