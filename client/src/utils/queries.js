@@ -15,10 +15,14 @@ export const QUERY_ME = gql`
             }
             reviews {
                 _id
+                albumId
+                body
+                rating
             }
             favorites {
                 _id
                 albumId
+                cover
             }
         }
     }
@@ -29,6 +33,14 @@ export const FIND_ALBUM = gql`
         findAlbum(albumId: $albumId) {
             _id
             name
+            cover
+            artists
+            reviews {
+                rating
+                body
+                author
+            }
+            averageRating
         }
     }
 `;
@@ -40,6 +52,7 @@ export const GET_COLLECTION = gql`
             albumCollection {
                 name
                 cover
+                albumId
             }
         }
     }
