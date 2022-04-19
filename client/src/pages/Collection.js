@@ -22,7 +22,7 @@ export default function Collection() {
 
     return (
         <div className="mx-auto" style={{maxWidth: '1200px', paddingBottom: '120px'}}>
-            <h1>{collection?.name}</h1>
+            <i><h1>{collection?.name}</h1></i>
             <div className="d-flex flex-wrap justify-content-around">
                 {collection?.albumCollection.length ? (
                     collection?.albumCollection?.map((album, i) => {

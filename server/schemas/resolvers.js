@@ -62,6 +62,21 @@ const resolvers = {
             const data = await Collection.findOne({ _id: id }).populate('albumCollection');
 
             return data;
+        },
+        user: async (parent, { username }) => {
+            const data = await User.findOne({ username: username })
+                                    .select('-__v -password')
+                                    .populate(
+                                        {
+                                            path: 'collections',
+                                            populate: {
+                                                path: 'albumCollection'
+                                            }
+                                        }
+                                    )
+                                    .populate('reviews')
+                                    .populate('favorites');
+            return data;
         }
     },
 

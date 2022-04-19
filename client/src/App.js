@@ -67,7 +67,7 @@ function App() {
                   }}
                 />
               )}
-              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/profile/:username?" component={Profile} />
               <Route exact path="/addto/:albumId" component={AddTo} />
               <Route exact path="/addcollection" component={AddCollection} />
               <Route exact path="/collection/:id" component={Collection} />

@@ -10,7 +10,7 @@ export default function AlbumMini({ name, cover, albumId }) {
                     <img width="300" height="300" src={cover}/>
                 </div>
                 <div>
-                    <h3 style={{margin: "10px 10px"}}>{name}</h3>
+                    <h3 style={{padding: "10px 10px"}}>{name}</h3>
                 </div>
             </div>
         </Link>
