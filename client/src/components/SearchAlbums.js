@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 
 import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
-import { ADD_ALBUM, ADD_FAVORITE } from '../utils/mutations';
+import { ADD_ALBUM, ADD_FAVORITE } from "../utils/mutations";
 
-import { QUERY_ME, FIND_ALBUM } from '../utils/queries';
+import { QUERY_ME, FIND_ALBUM } from "../utils/queries";
 
 import { useQuery, useMutation } from '@apollo/client'
 
 import { Link, Redirect } from 'react-router-dom';
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 export default function SearchAlbums({ album }) {
 
@@ -19,6 +19,10 @@ export default function SearchAlbums({ album }) {
     const { loadingAlbum, data, refetch } = useQuery(FIND_ALBUM, {
         variables: { albumId: album.albumId }
     });
+
+    const {loading:meLoading, data:meData} = useQuery(QUERY_ME);
+
+    console.log(data?.findAlbum);
 
     const [addAlbum, { albumError }] = useMutation(ADD_ALBUM);
     const [addFavorite, { favoriteError }] = useMutation(ADD_FAVORITE);
@@ -58,15 +62,17 @@ export default function SearchAlbums({ album }) {
         }
     };
 
-    const addToFavorites = async (id) => {
-        try {
-            await addFavorite({
-                variables: { id: id }
-            }).then(console.log('Added to favorites!'))
-        } catch (err) {
-            console.error(err)
-        }
+    let idExists = false;
+    !meLoading && console.log("meData", meData);
+    const favorites = !meLoading && meData.me.favorites;
+  
+
+  for (let i = 0; i < favorites.length; i++) {
+    if (favorites[i].albumId !== id) {
+    } else {
+      idExists = true;
     }
+  }
 
     if (responseAddTo) {
         refetch();
@@ -93,9 +99,10 @@ export default function SearchAlbums({ album }) {
                         <Card.Link href={album.albumURI}>Check It Out on Spotify</Card.Link>
                         <ListGroup>
                             <ListGroupItem>
-                                <Button className="btn btn-danger" 
+                            <div>{idExists && "One of your Favorites"}</div>
+                                {!idExists && <Button className="btn btn-danger" 
                                         onClick={() => cacheAlbum('favorite')}
-                                        >Favorite</Button>
+                                        >Favorite</Button>}
                                 <Button className="btn btn-success" 
                                         onClick={() => cacheAlbum('addTo')}
                                         >Add to...

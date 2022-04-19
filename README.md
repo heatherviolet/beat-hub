@@ -15,7 +15,7 @@ An interactive music-sharing experience.
 
 ### Preview
 
-[![preview image](./server/assets/images/beat-hub.jpg)](https://beathub.herokuapp.com/)
+[![preview image](./client/src/assets/images/beat-hub.jpg)](https://beathub.herokuapp.com/)
 
 This application is deployed at https://beathub.herokuapp.com/
 
