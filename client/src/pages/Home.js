@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/client';
 import { GET_REVIEWS } from '../utils/queries'
 import { GET_COLLECTIONS } from '../utils/queries'
 
-
+import './homeStyles.css'
 
 export default function Home() {
 

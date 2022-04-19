@@ -56,6 +56,7 @@ const typeDefs = gql`
         addReview(albumId: String, body: String, rating: Float): Review
         createCollection(name: String): Collection
         addToCollection(collId: ID, albumId: ID): Collection
+        deleteCollection(Id: ID): Collection
         drop: Boolean
     }
 
