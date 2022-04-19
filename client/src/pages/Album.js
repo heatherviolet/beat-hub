@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { FIND_ALBUM } from '../utils/queries';
+import { FIND_ALBUM, QUERY_ME } from '../utils/queries';
 import { WRITE_REVIEW } from '../utils/mutations'
 
 import { useQuery, useMutation } from '@apollo/client';
@@ -14,6 +14,7 @@ export default function Album() {
     const [score, setScore] = useState('Score');
     const [body, setBody] = useState('');
     const [writeReview, { error }] = useMutation(WRITE_REVIEW);
+    const { loading: meLoading, data: meData, refetch: refetchMe } = useQuery(QUERY_ME);
 
     console.log(albumId);
 
@@ -22,8 +23,6 @@ export default function Album() {
     })
 
     const album = data?.findAlbum;
-
-    console.log(album);
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
@@ -39,6 +38,7 @@ export default function Album() {
                     setScore('Score');
                     setBody('');
                     refetch();
+                    refetchMe();
                 })
             }
         } catch (err) {
@@ -47,8 +47,17 @@ export default function Album() {
         
     }
 
+    let reviewExists = false;
+    const userReviews = !meLoading && meData.me.reviews;
+
+    for (let i = 0; i < userReviews.length; i++) {
+        if (userReviews[i].albumId === albumId) {
+            reviewExists = true;
+        }
+    }
+
     return (
-        <div className="mx-auto" style={{maxWidth: "500px"}}>
+        <div className="mx-auto" style={{maxWidth: "500px", paddingBottom: '120px'}}>
             <div>
                 <div className="albumWrap d-flex flex-wrap">
                     <img width="300px" height="300px" src={album?.cover} className="mx-auto"></img>
@@ -68,7 +77,7 @@ export default function Album() {
                     </div>
                 </div>
             </div>
-            <div style={{marginTop: '20px'}} className="reviewForm">
+            {!reviewExists && <div style={{marginTop: '20px'}} className="reviewForm">
                 <h4>Share your thoughts!</h4>
                 <Form onSubmit={handleFormSubmit}>
                     <Form.Group className="mb-3">
@@ -89,7 +98,7 @@ export default function Album() {
                             value={body}
                             as="textarea"
                             placeholder="Write your review here!"
-                            style={{ height: '100px' }}
+                            style={{ height: '100px', resize: 'none' }}
                             onChange={(e) => setBody(e.target.value)}
                         />
                         <Button type="submit" style={{marginTop: '20px'}}>
@@ -97,7 +106,7 @@ export default function Album() {
                         </Button>
                     </Form.Group>
                 </Form>
-            </div>
+            </div>}
             <div>
                 {album?.reviews?.map((review, i) => {
                     return (

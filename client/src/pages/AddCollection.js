@@ -25,7 +25,7 @@ export default function AddCollection() {
       };
 
       if (success) {
-          return <Redirect to='/search'/>
+          return <Redirect to='/profile'/>
       }
 
     return (
