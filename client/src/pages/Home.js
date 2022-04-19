@@ -15,8 +15,8 @@ export default function Home() {
   console.log(reviews);
 
   const { loadingCollections, collectionsData } = useQuery(GET_COLLECTIONS);
-  const collections = collectionsData?.collections;
-  console.log(collections);
+  const collections = collectionsData;
+  console.log(collectionsData);
   
   return (
     <>
