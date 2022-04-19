@@ -10,34 +10,34 @@ import { GET_COLLECTIONS } from '../utils/queries'
 
 export default function Home() {
 
-  const { loadingReviews, reviewsData } = useQuery(GET_REVIEWS);
-  const reviews = reviewsData?.getReviews || [];
+  const { data:loadingReviews, data:reviewsData } = useQuery(GET_REVIEWS);
+  const reviews = reviewsData?.getReviews;
   console.log(reviews);
 
-  const { loadingCollections, collectionsData } = useQuery(GET_COLLECTIONS);
+  const { loading:loadingCollections, data:collectionsData } = useQuery(GET_COLLECTIONS);
   const collections = collectionsData?.getCollections;
-  console.log(collectionsData);
+  console.log(collections);
   
   return (
     <>
 
       { loadingCollections ? (
 
-        <LatestCollections collections={collections}></LatestCollections>
+        <p>Loading Collections... </p>
 
       ) : (
 
-        <p>Loading Collections... </p>
+        <LatestCollections collections={collections}></LatestCollections>
 
       )}
 
       { loadingReviews ? (
 
-        <LatestReviews reviews={reviews}></LatestReviews>
+        <p>Loading Reviews... </p>
 
       ) : (
 
-        <p>Loading Reviews... </p>
+        <LatestReviews reviews={reviews}></LatestReviews>
 
       )}
 
