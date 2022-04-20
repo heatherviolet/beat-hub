@@ -26,13 +26,13 @@ export default function Home() {
   }
   
   return (
-    <div className="mx-auto" style={{paddingBottom: '120px'}}>
-      <h1 align="center" style={{marginBottom: '50px'}}>Welcome to Beet Hub!</h1>
-      <div>
+    <div className="home mx-auto">
+      <h1 align="center">Welcome to Beet Hub!</h1>
+      <div className="home-container">
         { loadingCollections ? (
           <p>Loading Collections... </p>
         ) : (
-          <LatestCollections collections={collections}></LatestCollections>
+          <LatestCollections collections={collections} className=""></LatestCollections>
         )}
 
 

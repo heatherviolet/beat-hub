@@ -54,7 +54,7 @@ export default function Profile() {
       {loading ? (
         <h1>Loading...</h1>
       ) : (
-        <div className="mx-auto" style={{maxWidth: '1200px', paddingBottom: '120px'}}>
+        <div className="profile mx-auto" style={{maxWidth: '1200px', paddingBottom: '120px'}}>
           <div className="d-flex justify-content-center">
             <div>
             {!params && <h1>Welcome, {user.username}</h1>}
