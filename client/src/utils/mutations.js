@@ -76,6 +76,15 @@ import { gql } from '@apollo/client';
     }
  `;
 
+ export const DELETE_COLLECTION = gql`
+    mutation deleteCollection($Id: ID) {
+        deleteCollection(Id: $Id) {
+        _id
+        name
+        }     
+    }
+ `;
+
  export const WRITE_REVIEW = gql`
     mutation addReview($albumId: String, $body: String, $rating: Float) {
         addReview(albumId: $albumId, body: $body, rating: $rating) {

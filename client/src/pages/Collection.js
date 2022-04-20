@@ -19,7 +19,6 @@ export default function Collection() {
     const collection = collData?.getCollection;
 
     refetch();
-
     return (
         <div className="mx-auto" style={{maxWidth: '1200px', paddingBottom: '120px'}}>
             <i><h1>{collection?.name}</h1></i>

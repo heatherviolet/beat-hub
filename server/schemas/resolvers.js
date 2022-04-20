@@ -190,6 +190,18 @@ const resolvers = {
             return albumCollection
         },
 
+        deleteCollection: async (parent, { Id }) => {
+
+            await Collection.findByIdAndRemove(Id);
+            return 
+            // await User.findOneAndUpdate(
+            //     {_id: context.user._id},
+            //     { $unset: { collections: collectionId } },
+            //     { new: true, runValidators: true }
+            // )
+
+        },
+
         // experimental
         drop: async () => {
             db.dropDatabase();
