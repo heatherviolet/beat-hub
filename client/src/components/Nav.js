@@ -6,7 +6,7 @@ import logo from "../assets/images/beethub.JPG";
 import Auth from '../utils/auth'
 
 export default function Navigate() {
-  const [selectedNav, setSelectedNav] = useState("");
+  const [selectedNav, setSelectedNav] = useState("Home");
 
   const select = (e) => {
     let target = e.target.text;

@@ -6,6 +6,10 @@ const collectionSchema = new Schema(
             type: String,
             required: true
         },
+        author: {
+            type: String,
+            required: true
+        },
         albumCollection: [
             {
                 type: Schema.Types.ObjectId,

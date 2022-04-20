@@ -166,8 +166,9 @@ const resolvers = {
         },
 
         // name = whatever name the user gives the collection
-        createCollection: async (parent, { name }, context) => {
-            const collection = await Collection.create({ name: name });
+        createCollection: async (parent, { name, author }, context) => {
+            console.log(author)
+            const collection = await Collection.create({ name: name, author: author });
 
             await User.findOneAndUpdate(
                 { _id: context.user._id },
