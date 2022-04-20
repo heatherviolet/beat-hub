@@ -1,7 +1,6 @@
-
-
 .collections-container {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -10,4 +9,9 @@
 }
 .coll-title {
     border-radius: 5px;
+}
+
+.reviews-container {
+    width: 500px;
+    margin: 0 auto;
 }

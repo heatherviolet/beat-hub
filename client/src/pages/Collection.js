@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 import { GET_COLLECTION } from '../utils/queries';
 
@@ -17,11 +17,16 @@ export default function Collection() {
     });
 
     const collection = collData?.getCollection;
+    console.log(collection);
 
     refetch();
+
     return (
         <div className="mx-auto" style={{maxWidth: '1200px', paddingBottom: '120px'}}>
             <i><h1>{collection?.name}</h1></i>
+            <Link to={`/profile/${collection?.author}`}>
+                <p style={{color: 'white'}}>By: <i>{collection?.author}</i></p>
+            </Link>
             <div className="d-flex flex-wrap justify-content-around">
                 {collection?.albumCollection.length ? (
                     collection?.albumCollection?.map((album, i) => {
