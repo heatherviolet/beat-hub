@@ -11,7 +11,14 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                                             .select('-__v -password')
-                                            .populate('collections')
+                                            .populate(
+                                                {
+                                                    path: 'collections',
+                                                    populate: {
+                                                        path: 'albumCollection'
+                                                    }
+                                                }
+                                            )
                                             .populate('reviews')
                                             .populate('favorites');
                 return userData;
@@ -20,7 +27,7 @@ const resolvers = {
             throw new AuthenticationError('Not logged in');
         },
         getUsers: async () => {
-            const data = User.find().select('-__v -password')
+            const data = await User.find().select('-__v -password')
                                     .populate('favorites')
                                     .populate('reviews')
                                     .populate('collections');
@@ -28,26 +35,47 @@ const resolvers = {
             return data;
         },
         getAlbums: async () => {
-            const data = Album.find().populate('favoritedBy')
+            const data = await Album.find().populate('favoritedBy')
                                     .populate('reviews');
 
             return data;
         },
         getCollections: async () => {
-            const data = Collection.find().populate('albumCollection');
+            const data = await Collection.find().populate('albumCollection');
 
             return data;
         },
         getReviews: async () => {
-            const data = Review.find();
+            const data = await Review.find();
 
             return data;
         },
         findAlbum: async (parent, { albumId }) => {
             const data = await Album.findOne({ albumId: albumId })
+                                    .populate('reviews');
 
             console.log(data)
 
+            return data;
+        },
+        getCollection: async (parent, { id }) => {
+            const data = await Collection.findOne({ _id: id }).populate('albumCollection');
+
+            return data;
+        },
+        user: async (parent, { username }) => {
+            const data = await User.findOne({ username: username })
+                                    .select('-__v -password')
+                                    .populate(
+                                        {
+                                            path: 'collections',
+                                            populate: {
+                                                path: 'albumCollection'
+                                            }
+                                        }
+                                    )
+                                    .populate('reviews')
+                                    .populate('favorites');
             return data;
         }
     },
@@ -160,6 +188,18 @@ const resolvers = {
             ).populate('albumCollection')
 
             return albumCollection
+        },
+
+        deleteCollection: async (parent, { Id }) => {
+
+            await Collection.findByIdAndRemove(Id);
+            return 
+            // await User.findOneAndUpdate(
+            //     {_id: context.user._id},
+            //     { $unset: { collections: collectionId } },
+            //     { new: true, runValidators: true }
+            // )
+
         },
 
         // experimental

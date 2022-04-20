@@ -10,12 +10,16 @@ import {
   InMemoryCache,
   createHttpLink,
 } from "@apollo/client";
+import Auth from "./utils/auth";
 
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import Footer from "./components/Footer";
-import Review from "./pages/Review";
+import AddTo from './pages/AddTo';
+import AddCollection from './pages/AddCollection'
+import Collection from "./pages/Collection";
+import Album from './pages/Album';
 
 // establish graphql uri
 const httpLink = createHttpLink({
@@ -47,17 +51,30 @@ function App() {
           <header className="d-flex align-items-start justify-content-start">
             <Nav />
           </header>
-          <main className="d-flex justify-content-start px-4">
+          <main>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/search" component={Search} />
-              <Route exact path="/profile" component={Profile} />
-              <Route exact path="/review" component={Review} />
+              {(Auth.loggedIn() && (
+                <Route exact path="/search" component={Search} />
+              )) || (
+                <Route
+                  exact
+                  path="/search"
+                  component={() => {
+                    return <h2>Login to start searching!</h2>;
+                  }}
+                />
+              )}
+              <Route exact path="/profile/:username?" component={Profile} />
+              <Route exact path="/addto/:albumId" component={AddTo} />
+              <Route exact path="/addcollection" component={AddCollection} />
+              <Route exact path="/collection/:id" component={Collection} />
+              <Route exact path="/album/:albumId" component={Album} />
             </Switch>
           </main>
-          <Footer />
+            <Footer />
         </div>
       </Router>
     </ApolloProvider>

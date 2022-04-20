@@ -13,7 +13,7 @@ export const searchSpotify = async (query) => {
         },
         headers: {
           'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
-          'X-RapidAPI-Key': "98749236fcmsh9a0a6d6e384a89ep1d7bd0jsn68ffef7de409"
+          'X-RapidAPI-Key': "5309b1aa14msh207cd3a0695d803p18e124jsn6b664d1cb7cc"
         }
       };
 

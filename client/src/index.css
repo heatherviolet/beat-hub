@@ -1,10 +1,111 @@
 :root {
   --react-bg-color: #282c34;
+  --site-bg-color: #3e535f;
   --main-bg-color: #32434d;
   --secondary-bg-color: #848C8E;
   --tertiary-bg-color: #BFB7B6;
   --cream-color: #F1F2EE;
   --accent-color: #DCF763;
+}
+
+h1,
+h2,
+h3,
+h4,
+i {
+  color: var(--cream-color);
+}
+
+.reviews {
+  margin: 10px 0px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: var(--react-bg-color);
+  color: var(--cream-color);
+}
+
+.revBody {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--main-bg-color);
+}
+
+.good button,
+.good {
+  color: rgb(0, 206, 0);
+}
+
+.bad button,
+.bad {
+  color: red;
+}
+
+.profile-nav p {
+  margin: 0px;
+  padding: 5px 10px;
+}
+
+.profile-nav p:hover {
+  cursor: pointer;
+}
+
+.profile-coll-form,
+.reviewForm {
+  padding: 10px;
+  background-color: var(--react-bg-color);
+  border-radius: 10px;
+}
+
+.profile-coll-form button {
+  margin-top: 8px;
+  display: block;
+}
+
+.profile-coll-form label {
+  color: var(--cream-color);
+  display: block;
+}
+
+.albumWrap {
+  background-color: var(--react-bg-color);
+  padding: 25px;
+  border-radius: 20px;
+}
+
+.selectedProfileNav {
+  background-color: var(--accent-color);
+  border-radius: 30px;
+  color: var(--main-bg-color)
+}
+
+.collection-back {
+  background-color: var(--main-bg-color);
+  margin: 20px;
+  padding: 0px 0px 10px 0px;
+  min-width: 300px;
+  min-height: 300px;
+}
+
+.image-wrap {
+  min-width: 300px;
+  min-height: 300px;
+}
+
+.coll-title {
+  background-color: var(--react-bg-color);
+  padding: 15px;
+}
+
+.album-mini {
+  background-color: var(--react-bg-color);
+}
+
+.point:hover {
+  cursor: pointer;
+}
+
+.inner-coll {
+  padding: 20px
 }
 
 .spacing-w-1 {
@@ -23,6 +124,59 @@
   margin: 0vh 5vh;
 }
 
+::-webkit-scrollbar {
+  background: var(--main-bg-color);
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cream-color);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 1rem;
+}
+
+#search-page {
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-direction: row;
+  max-width: 100vw;
+  max-height: 80vh;
+}
+
+#album-container {
+  width: 45vw;
+  height: 75vh;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  background-color: var(--main-bg-color);
+  border-radius: 5px;
+  margin: 0 0 0 1rem;
+}
+
+.albumCard {
+  width: 230px;
+  height: 600px;
+  background-color: var(--cream-color);
+  padding: 1.0rem;
+  margin: 1rem 0.2rem;
+}
+
 .form {
   width: 50vw;
   background-color: var(--cream-color);
@@ -30,10 +184,22 @@
   border-radius: 22px;
 }
 
+#under-form {
+  display: inline-block;
+  background-image: url(./assets/images/hexagon-3736091.png);
+  background-size: 210vh;
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: 50px 130px;
+  background-clip: border-box;
+  margin: 0 1rem 0 0;
+}
+
 .button {
+  background-color: var(--secondary-bg-color);
   color: var(--accent-color);
-  border-style: outset;
-  border-width: 3px;
+  border: 3px outset var(--cream-color);
 }
 
 .selectedNav {
@@ -50,7 +216,7 @@
 }
 
 .navContainer {
-  background-color: var(--main-bg-color);
+  background-color: var(--react-bg-color);
   min-width: 100vw;
   padding: 2rem 5rem;
   margin: 0 0 0.8rem 0;
@@ -58,7 +224,7 @@
 
 body {
   margin: 0;
-  background-color: var(--secondary-bg-color);
+  background-color: var(--site-bg-color);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -70,9 +236,10 @@ body {
   background-color: var(--main-bg-color);
   font-size: 1.3rem;
   width: 100vw;
-  padding: 1.35vw;
+  padding: 1.10vw;
   position: fixed;
   bottom: 0;
+  margin: 1vw 0 0 0;
 }
 
 .footerElement {
@@ -90,4 +257,52 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* .collection-card {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+} */
+
+/* .collection-card-header {
+  text-align: center;
+} */
+
+@media only screen and (max-width:600px) {
+  main {
+    display: flex;
+    justify-content: center;
+  }
+
+  #search-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url(./assets/images/hexagon-3736091.png);
+    background-size: 120vh;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: -215vw;
+  }
+
+  .form {
+    width: 70vw;
+    margin: 1vh 0;
+  }
+
+  #album-container {
+    width: 70vw;
+  }
+
+  #under-form {
+    background: none;
+    height: 3%;
+  }
+
+  .footerElement {
+    width: 23vw;
+  }
 }

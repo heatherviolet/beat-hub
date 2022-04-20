@@ -20,6 +20,7 @@ const typeDefs = gql`
         year: Int
         reviews: [Review]
         favoritedBy: [User]
+        averageRating: Float
     }
 
     type Review {
@@ -44,6 +45,7 @@ const typeDefs = gql`
         getReviews: [Review]
         findAlbum(albumId: String!): Album
         user(username: String!): User
+        getCollection(id: ID): Collection
     }
 
     type Mutation {
@@ -54,6 +56,7 @@ const typeDefs = gql`
         addReview(albumId: String, body: String, rating: Float): Review
         createCollection(name: String): Collection
         addToCollection(collId: ID, albumId: ID): Collection
+        deleteCollection(Id: ID): Collection
         drop: Boolean
     }
 

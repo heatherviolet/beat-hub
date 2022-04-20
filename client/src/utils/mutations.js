@@ -51,18 +51,46 @@ import { gql } from '@apollo/client';
     }
  `;
 
- 
+ export const CREATE_COLLECTION = gql`
+    mutation createCollection($name: String) {
+        createCollection(name: $name) {
+            name
+            albumCollection {
+                _id
+                name
+            }
+        }
+    }
+ `;
 
- export const ADD_REVIEW = gql`
- mutation addReview($id: ID) {
-     addReview(id: $id) {
-         _id
-         album
-         review {
-             username
-             body
-             rating
-         }
-     }
- }
-`;
+ export const ADD_TO_COLLECTION = gql`
+    mutation addToCollection($collId: ID, $albumId: ID) {
+        addToCollection(collId: $collId, albumId: $albumId) {
+            name
+            albumCollection {
+                _id
+                albumId
+                name
+            }
+        }
+    }
+ `;
+
+ export const DELETE_COLLECTION = gql`
+    mutation deleteCollection($Id: ID) {
+        deleteCollection(Id: $Id) {
+        _id
+        name
+        }     
+    }
+ `;
+
+ export const WRITE_REVIEW = gql`
+    mutation addReview($albumId: String, $body: String, $rating: Float) {
+        addReview(albumId: $albumId, body: $body, rating: $rating) {
+            albumId
+            body
+            author
+        }
+    }
+ `;

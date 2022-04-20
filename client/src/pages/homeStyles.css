@@ -1,0 +1,13 @@
+
+
+.collections-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.collection-back {
+    border-radius: 5px;
+}
+.coll-title {
+    border-radius: 5px;
+}
