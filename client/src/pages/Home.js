@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import LatestCollections from '../components/LatestCollections';
 import LatestReviews from '../components/LatestReviews';
 
+import logo from "../assets/images/beathub22.png";
+
 import { useQuery } from '@apollo/client';
 import { GET_REVIEWS } from '../utils/queries'
 import { GET_COLLECTIONS } from '../utils/queries'
@@ -27,7 +29,12 @@ export default function Home() {
   
   return (
     <div className="mx-auto" style={{paddingBottom: '120px'}}>
-      <h1 align="center" style={{marginBottom: '50px'}}>Welcome to Beet Hub!</h1>
+      <h1 align="center" style={{marginBottom: '50px'}}>Welcome to Beet Hub!&emsp;<img 
+            alt=""
+            src={logo}
+            width="80"
+            height="80"
+          /></h1>
       <div>
         { loadingCollections ? (
           <p>Loading Collections... </p>
