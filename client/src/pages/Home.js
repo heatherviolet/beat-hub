@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import LatestCollections from '../components/LatestCollections';
 import LatestReviews from '../components/LatestReviews';
 
@@ -9,37 +9,39 @@ import { GET_COLLECTIONS } from '../utils/queries'
 import './homeStyles.css'
 
 export default function Home() {
+  const [fetched, setFetched] = useState(false);
 
-  const { loading:loadingReviews, data:reviewsData } = useQuery(GET_REVIEWS);
+  const { loading:loadingReviews, data:reviewsData, refetch: refetchReviews } = useQuery(GET_REVIEWS);
   const reviews = reviewsData?.getReviews;
-  console.log(reviews);
 
-  const { loading:loadingCollections, data:collectionsData } = useQuery(GET_COLLECTIONS);
+  const { loading:loadingCollections, data:collectionsData, refetch: refetchCollections } = useQuery(GET_COLLECTIONS);
   const collections = collectionsData?.getCollections;
-  console.log(collections);
+
+  if (!fetched) {
+    setTimeout(() => {
+      refetchCollections();
+      refetchReviews();
+    }, 100)
+    setFetched(true);
+  }
   
   return (
-    <>
-      { loadingCollections ? (
-
-        <p>Loading Collections... </p>
-
-      ) : (
-
-        <LatestCollections collections={collections}></LatestCollections>
-
-      )}
+    <div className="mx-auto" style={{paddingBottom: '120px'}}>
+      <h1 align="center" style={{marginBottom: '50px'}}>Welcome to Beet Hub!</h1>
+      <div>
+        { loadingCollections ? (
+          <p>Loading Collections... </p>
+        ) : (
+          <LatestCollections collections={collections}></LatestCollections>
+        )}
 
 
-      { loadingReviews ? (
-
-        <p>Loading Reviews... </p>
-
-      ) : (
-
-        <LatestReviews reviews={reviews}></LatestReviews>
-
-      )}
-    </>
+        { loadingReviews ? (
+          <p>Loading Reviews... </p>
+        ) : (
+          <LatestReviews reviews={reviews}></LatestReviews>
+        )}
+      </div>
+    </div>
   )
 }

@@ -5,17 +5,17 @@ export default function LatestCollections({ collections }) {
   return (
     <>
 
-        { collections ? (
+        {collections.length ? (
             <div>
-                <h1>Check Out The Latest Collections By Others!</h1>
+                <h1 align="center">Check Out The Latest Collections By Others!</h1>
                 <div className='collections-container'>
-                  {collections?.slice(0).reverse().map((collection, i)=> (
+                  {collections?.map((collection, i)=> (
                       <Collection key={i} collection={collection} />
-                  ))}
+                  )).reverse().slice(0, 4)}
                 </div>
             </div>
 
-            ) : ( <div>there are no collections in database </div> )
+            ) : ( <h1>There are not enough collections in the database...</h1> )
         }
 
     </>

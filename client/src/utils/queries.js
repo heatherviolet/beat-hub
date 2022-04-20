@@ -77,6 +77,7 @@ export const GET_COLLECTION = gql`
     query getCollection($id: ID) {
         getCollection(id: $id) {
             name
+            author
             albumCollection {
                 name
                 cover
@@ -92,6 +93,7 @@ export const GET_REVIEWS = gql `
             _id
             albumId
             body
+            author
             rating
         }
     }
