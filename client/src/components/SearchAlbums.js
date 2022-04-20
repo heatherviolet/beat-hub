@@ -15,14 +15,13 @@ import Auth from "../utils/auth";
 export default function SearchAlbums({ album, id }) {
 
     const [responseAddTo, setResponseAddTo] = useState(false);
+    const [responseView, setResponseView] = useState(false);
 
     const { loadingAlbum, data, refetch } = useQuery(FIND_ALBUM, {
         variables: { albumId: album.albumId }
     });
 
     const {loading:meLoading, data:meData} = useQuery(QUERY_ME);
-
-    console.log(data?.findAlbum);
 
     const addToFavorites = async (id) => {
       try {
@@ -32,7 +31,7 @@ export default function SearchAlbums({ album, id }) {
       } catch (err) {
           console.error(err)
       }
-  }
+    }
 
     const [addAlbum, { albumError }] = useMutation(ADD_ALBUM);
     const [addFavorite, { favoriteError }] = useMutation(ADD_FAVORITE);
@@ -57,6 +56,10 @@ export default function SearchAlbums({ album, id }) {
                     if (action === 'addTo') {
                         setResponseAddTo(true);
                     }
+
+                    if (action === 'view') {
+                        setResponseView(true);
+                    }
                 })
             } else {
                 if (action === 'favorite') {
@@ -66,6 +69,10 @@ export default function SearchAlbums({ album, id }) {
                 if (action === 'addTo') {
                     setResponseAddTo(true);
                 }
+
+                if (action === 'view') {
+                    setResponseView(true);
+                }
             }
         } catch (err) {
             console.log(err);
@@ -73,25 +80,34 @@ export default function SearchAlbums({ album, id }) {
     };
 
     let idExists = false;
-    !meLoading && console.log("meData", meData);
+
     const favorites = !meLoading && meData.me.favorites;
   
 
-  for (let i = 0; i < favorites.length; i++) {
-    if (favorites[i].albumId !== id) {
-    } else {
-      idExists = true;
+    for (let i = 0; i < favorites.length; i++) {
+        if (favorites[i].albumId !== id) {
+        } else {
+            idExists = true;
+        }
     }
-  }
 
     if (responseAddTo) {
         refetch();
         return <Redirect to={`/addto/${album.albumId}`} />
     }
+
+    if (responseView) {
+        refetch();
+        return <Redirect to={`/album/${album.albumId}`} />
+    }
     
     return (
         <Card className="albumCard d-flex align-align-content-end">
-            <Card.Img variant="top" src={album.cover} alt={album.name} />
+            <Card.Img   className="point"
+                        variant="top" 
+                        src={album.cover} 
+                        alt={album.name}
+                        onClick={() => cacheAlbum('view')} />
             <Card.Body>
                 <Card.Title>{album.name}</Card.Title>
                 <Card.Text>{album.year}</Card.Text>

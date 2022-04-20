@@ -62,6 +62,21 @@ const resolvers = {
             const data = await Collection.findOne({ _id: id }).populate('albumCollection');
 
             return data;
+        },
+        user: async (parent, { username }) => {
+            const data = await User.findOne({ username: username })
+                                    .select('-__v -password')
+                                    .populate(
+                                        {
+                                            path: 'collections',
+                                            populate: {
+                                                path: 'albumCollection'
+                                            }
+                                        }
+                                    )
+                                    .populate('reviews')
+                                    .populate('favorites');
+            return data;
         }
     },
 
@@ -151,8 +166,9 @@ const resolvers = {
         },
 
         // name = whatever name the user gives the collection
-        createCollection: async (parent, { name }, context) => {
-            const collection = await Collection.create({ name: name });
+        createCollection: async (parent, { name, author }, context) => {
+            console.log(author)
+            const collection = await Collection.create({ name: name, author: author });
 
             await User.findOneAndUpdate(
                 { _id: context.user._id },
@@ -173,6 +189,18 @@ const resolvers = {
             ).populate('albumCollection')
 
             return albumCollection
+        },
+
+        deleteCollection: async (parent, { Id }) => {
+
+            await Collection.findByIdAndRemove(Id);
+            return 
+            // await User.findOneAndUpdate(
+            //     {_id: context.user._id},
+            //     { $unset: { collections: collectionId } },
+            //     { new: true, runValidators: true }
+            // )
+
         },
 
         // experimental
