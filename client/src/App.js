@@ -20,6 +20,7 @@ import AddTo from './pages/AddTo';
 import AddCollection from './pages/AddCollection'
 import Collection from "./pages/Collection";
 import Album from './pages/Album';
+import Review from './pages/Review';
 
 // establish graphql uri
 const httpLink = createHttpLink({
@@ -72,6 +73,8 @@ function App() {
               <Route exact path="/addcollection" component={AddCollection} />
               <Route exact path="/collection/:id" component={Collection} />
               <Route exact path="/album/:albumId" component={Album} />
+              <Route exact path="/review" component={Review} />
+
             </Switch>
           </main>
             <Footer />

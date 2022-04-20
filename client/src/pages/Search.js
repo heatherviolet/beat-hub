@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Modal } from "react-bootstrap";
 import { searchSpotify } from "../utils/API";
 
 import SearchAlbums from "../components/SearchAlbums";
@@ -7,7 +7,15 @@ import SearchAlbums from "../components/SearchAlbums";
 export default function Search() {
   const [searchedAlbums, setSearchedAlbums] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [reviewModal, setReviewModal] = useState(false);
+  const [albumReviewId, setAlbumReviewId] = useState('');
+  const [reviewText, setReviewText] = useState('');
 
+  const toggleReviewModal = () => setReviewModal(currentState => !currentState);
+
+  const addReview = () => {
+    console.log('trying to add review for : ', albumReviewId);
+  }
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -40,6 +48,25 @@ export default function Search() {
   };
 
   return (
+    
+    <>
+
+      <Modal show={reviewModal} onHide={toggleReviewModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add your review below!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <input value={reviewText} onChange={e=> setReviewText(e.target.value)}></input>
+          </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={toggleReviewModal}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={addReview}>
+            Add Review
+          </Button>
+        </Modal.Footer>
+      </Modal>
     <div id="search-page">
       <div>
         <Form className="form" onSubmit={handleFormSubmit}>
@@ -66,10 +93,11 @@ export default function Search() {
       <div id="album-container">
         {searchedAlbums.length
           ? searchedAlbums.map((album, i) => {
-              return <SearchAlbums key={i} album={album} id={album.albumId} />;
+              return <SearchAlbums key={i} album={album} id={album.albumId} setAlbumReviewId={setAlbumReviewId} toggleReviewModal={toggleReviewModal}/>;
             })
           : ""}
       </div>
     </div>
+    </>
   );
 }

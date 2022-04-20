@@ -1,58 +1,37 @@
-const addReview = async () => {
-    try {
-        if (parent, { albumId, body, rating }, context) => {
-    const review = await Review.create({
-        // albumId refers to Spotify ID
-        albumId: albumId,
-        body: body,
-        rating: rating,
-        author: context.user.username
-    })
+import React from 'react';
 
-    await User.findOneAndUpdate(
-        { _id: context.user._id },
-        { $addToSet: { reviews: review._id } },
-        { new: true, runValidators: true }
-    ).populate('reviews');
+import { Link } from 'react-router-dom';
 
-    await Album.findOneAndUpdate(
-        { albumId: albumId }, 
-        { $addToSet: { reviews: review._id } },
-        { new: true, runValidators: true }
-    ).populate('reviews');
+import { FIND_ALBUM } from '../../utils/queries';
 
-    return review;
-},
+import { useQuery } from '@apollo/client';
 
-const cacheAlbum = async () => {
-    // add the album to our database
-    try {
-        if (!data.findAlbum) {
-            await addAlbum({
-                variables: {
-                    name: album.name,
-                    albumId: album.albumId,
-                    artists: album.artists.items.map(data => data.profile.name),
-                    cover: album.cover,
-                    year: album.year
-                }
-            }).then(promise => {
-                addToFavorites(promise.data.addAlbum._id).then(refetch())
-            })
-        } else {
-            addToFavorites(data?.findAlbum?._id).then(refetch());
-        }
-    } catch (err) {
-        console.log(err);
-    }
-};
+export default function Review({ review }) {
 
-const addToFavorites = async (id) => {
-    try {
-        await addFavorite({
-            variables: { id: id }
-        }).then(console.log('Added to favorites!'))
-    } catch (err) {
-        console.error(err)
-    }
+    const { data, loading } = useQuery(FIND_ALBUM, {
+        variables: { albumId: review.albumId }
+    });
+
+
+    const image = data?.findAlbum?.cover;
+    const name = data?.findAlbum?.name;
+
+    return (
+        <div className="d-flex reviews" style={{maxWidth: "500px", margin: "30px 0px"}}>
+            <Link to={`/album/${review.albumId}`}>
+                <div>
+                    <img width="150px" height="150px" src={image}></img>
+                </div>
+            </Link>
+            <div style={{margin: "0px 20px", color: "#F1F2EE"}}>
+                <h4>{name}</h4>
+                <p>
+                    Rating: <i style={{display: "block"}} className={(review.rating > 2) ? 'good' : 'bad'}>{review.rating}/5</i>
+                </p>
+                <p className="revBody">
+                    <i>{review.body}</i>
+                </p>
+            </div>
+        </div>
+    );
 }
