@@ -16,7 +16,7 @@ export default function Search() {
     }
 
     try {
-      const response = await searchSpotify(searchInput);;
+      const response = await searchSpotify(searchInput);
       if (!response) {
         throw new Error("something went wrong!");
       }
@@ -66,7 +66,6 @@ export default function Search() {
       <div id="album-container">
         {searchedAlbums.length
           ? searchedAlbums.map((album, i) => {
-              console.log(album);
               return <SearchAlbums key={i} album={album} id={album.albumId} />;
             })
           : ""}

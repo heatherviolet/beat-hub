@@ -1,5 +1,6 @@
 :root {
   --react-bg-color: #282c34;
+  --site-bg-color: #3e535f;
   --main-bg-color: #32434d;
   --secondary-bg-color: #848C8E;
   --tertiary-bg-color: #BFB7B6;
@@ -215,7 +216,7 @@ main {
 }
 
 .navContainer {
-  background-color: var(--main-bg-color);
+  background-color: var(--react-bg-color);
   min-width: 100vw;
   padding: 2rem 5rem;
   margin: 0 0 0.8rem 0;
@@ -223,7 +224,7 @@ main {
 
 body {
   margin: 0;
-  background-color: var(--secondary-bg-color);
+  background-color: var(--site-bg-color);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -257,6 +258,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* .collection-card {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+} */
+
+/* .collection-card-header {
+  text-align: center;
+} */
 
 @media only screen and (max-width:600px) {
   main {

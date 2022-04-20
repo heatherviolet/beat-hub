@@ -35,6 +35,7 @@ const typeDefs = gql`
         _id: ID
         name: String
         albumCollection: [Album]
+        author: String!
     }
 
     type Query {
@@ -54,8 +55,9 @@ const typeDefs = gql`
         addAlbum(albumId: String, name: String, artists: [String], cover: String, year: Int): Album
         addFavorite(id: ID): User
         addReview(albumId: String, body: String, rating: Float): Review
-        createCollection(name: String): Collection
+        createCollection(name: String, author: String!): Collection
         addToCollection(collId: ID, albumId: ID): Collection
+        deleteCollection(Id: ID): Collection
         drop: Boolean
     }
 
