@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import { searchSpotify } from "../utils/API";
+import {WRITE_REVIEW} from '../utils/mutations'
 
 import SearchAlbums from "../components/SearchAlbums";
 
@@ -10,11 +11,14 @@ export default function Search() {
   const [reviewModal, setReviewModal] = useState(false);
   const [albumReviewId, setAlbumReviewId] = useState('');
   const [reviewText, setReviewText] = useState('');
+  const [addedReview, {error}] = useMutation(WRITE_REVIEW);
 
   const toggleReviewModal = () => setReviewModal(currentState => !currentState);
 
-  const addReview = () => {
+  const addReview = async () => {
+    const review = addedReview(albumReviewId, reviewText, )
     console.log('trying to add review for : ', albumReviewId);
+    console.log(reviewText);
   }
   const handleFormSubmit = async (event) => {
     event.preventDefault();
