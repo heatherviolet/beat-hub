@@ -74,7 +74,7 @@ function App() {
               <Route exact path="/album/:albumId" component={Album} />
             </Switch>
           </main>
-            <Footer />
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>

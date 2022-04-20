@@ -25,7 +25,7 @@ export default function Album() {
 
     const album = !loading && data.findAlbum;
 
-    const _id = !loading && data.findAlbum._id
+    const _id = !loading && data?.findAlbum?._id
 
     if (!Auth.loggedIn()) {
         return <Redirect to='/login'/>

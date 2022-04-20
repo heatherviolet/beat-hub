@@ -16,7 +16,7 @@ export default function Search() {
     }
 
     try {
-      const response = await searchSpotify(searchInput);;
+      const response = await searchSpotify(searchInput);
       if (!response) {
         throw new Error("something went wrong!");
       }

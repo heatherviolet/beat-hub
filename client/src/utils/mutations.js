@@ -52,8 +52,8 @@ import { gql } from '@apollo/client';
  `;
 
  export const CREATE_COLLECTION = gql`
-    mutation createCollection($name: String) {
-        createCollection(name: $name) {
+    mutation createCollection($name: String, $author: String!) {
+        createCollection(name: $name, author: $author) {
             name
             albumCollection {
                 _id
@@ -73,6 +73,15 @@ import { gql } from '@apollo/client';
                 name
             }
         }
+    }
+ `;
+
+ export const DELETE_COLLECTION = gql`
+    mutation deleteCollection($Id: ID) {
+        deleteCollection(Id: $Id) {
+        _id
+        name
+        }     
     }
  `;
 

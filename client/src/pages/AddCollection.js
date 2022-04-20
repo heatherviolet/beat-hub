@@ -3,8 +3,9 @@ import React, { useState } from 'react'
 import { Form, Button } from "react-bootstrap";
 
 import { CREATE_COLLECTION } from '../utils/mutations';
+import { QUERY_ME } from '../utils/queries';
 
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 
 import { Redirect, Link } from 'react-router-dom';
 
@@ -13,13 +14,18 @@ export default function AddCollection() {
     const [success, setSuccess] = useState(false);
 
     const [createCollection, { createErr }] = useMutation(CREATE_COLLECTION);
+    const { loading, data: meData } = useQuery(QUERY_ME);
+
+    const author = !loading && meData.me.username;
+
+    console.log(author)
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
         if (nameInput) {
             await createCollection({
-                variables: { name: nameInput }
+                variables: { name: nameInput, author: author }
             }).then(setSuccess(true));
         }
       };
