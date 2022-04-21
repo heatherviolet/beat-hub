@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export default function Favorite({ favorite }) {
-    return (
-        <Link to={`/album/${favorite.albumId}`}>
-            <img width="300" height="300" src={favorite.cover} style={{padding: "5px"}}/>
-        </Link>
-    );
+  return (
+    <Link to={`/album/${favorite.albumId}`}>
+      <div className="favorites">
+        <img className="favorite-image" src={favorite.cover} style={{ padding: "5px" }} />
+      </div>
+    </Link>
+  );
 }

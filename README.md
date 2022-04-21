@@ -15,11 +15,11 @@ An interactive music-sharing experience.
 
 ### Preview
 
-[![preview image](./client/src/assets/images/beat-hub.jpg)](https://beathub.herokuapp.com/)
+[![preview image](./client/src/assets/images/beet-hub-home.jpg)](https://blooming-tundra-89879.herokuapp.com/)
 
-This application is deployed at https://beathub.herokuapp.com/
+This application is deployed at https://blooming-tundra-89879.herokuapp.com/
 
-Beathub is an interactive playlist-sharing experience. It is built for people who treat music as a lifestyle. Save your playlists, rate others choices, and share your insight. Beathub is integrated with your Spotify account, so there's no need to keep track of another subscription!
+Beethub is an interactive album-collection sharing experience. It is built for people who treat music as a lifestyle. Name and save collections, review albums from anywhere by clicking or tapping, and see other users' choices in real time. Beathub is integrated with Spotify, and has access to Spotify's full library of album artwork, artists, and more. There's no need to keep track of another subscription if you use BeetHub!
 
 The app is built on MongoDB and the entire front end is built with react. The app is responsive and mobile-friendly, so you always have access.
 
@@ -29,7 +29,6 @@ The app is built on MongoDB and the entire front end is built with react. The ap
 - [Usage](#usage)
 - [Maintainers](#maintainers)
 - [Contributing](#contributing)
-- [Tests](#tests)
 - [Credits](#credits)
 - [License](#license)
 
@@ -49,9 +48,11 @@ Run `npm run develop` in your terminal and wait for the app to display in your d
 
 ## Maintainers
 
-[@Daniel Harned](https://github.com/DrDano)
-
-Email: [danielharned@gmail.com](mailto:danielharned@gmail.com)
+[@Heather Aljberg](https://github.com/heatherviolet)\
+[@Daniel Harned](https://github.com/DrDano)\
+[@Juan Chavez](https://github.com/realchavezjuan)\
+[@David Manriquez](https://github.com/DMAN28)\
+[@Diego Marrs](https://github.com/StaticCloud)
 
 ## Contributing
 

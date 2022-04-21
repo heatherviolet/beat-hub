@@ -54,8 +54,6 @@ const resolvers = {
             const data = await Album.findOne({ albumId: albumId })
                                     .populate('reviews');
 
-            console.log(data)
-
             return data;
         },
         getCollection: async (parent, { id }) => {
@@ -167,7 +165,6 @@ const resolvers = {
 
         // name = whatever name the user gives the collection
         createCollection: async (parent, { name, author }, context) => {
-            console.log(author)
             const collection = await Collection.create({ name: name, author: author });
 
             await User.findOneAndUpdate(

@@ -15,7 +15,7 @@ const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
 
 // server port
-const PORT = 3001 || process.env.PORT;
+const PORT = process.env.PORT || 3001;
 
 const startServer = async () => {
     // setup the server with configs
