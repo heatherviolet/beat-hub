@@ -24,9 +24,11 @@ export default function Review({ review }) {
             </Link>
             <div style={{margin: "0px 20px", color: "#F1F2EE"}}>
                 <h4>{name}</h4>
-                <Link to={`/profile/${review.author}`}>
-                    <p style={{color: 'white'}}>By: <i>{review.author}</i></p>
-                </Link>
+                {review.author && 
+                    <Link to={`/profile/${review.author}`}>
+                        <p style={{color: 'white'}}>By: <i>{review.author}</i></p>
+                    </Link>
+                }
                 <p>
                     Rating: <i style={{display: "block"}} className={(review.rating > 2) ? 'good' : 'bad'}>{review.rating}/5</i>
                 </p>
