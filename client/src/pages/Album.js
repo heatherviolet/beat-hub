@@ -92,8 +92,11 @@ export default function Album() {
                             <h2>{album?.name}</h2>
                             <h4 style={{marginTop: '20px'}}>Artists:</h4>
                             {album?.artists?.map((artist, i) => {
-                                return <i key={i}>{artist} </i>
+                                return <i key={i}>{artist}</i>
                             })}
+                            <div style={{marginTop: '20px'}}>
+                                <a target="_blank" href={`https://open.spotify.com/album/${albumId}`}>Check it out on Spotify!</a>
+                            </div>
                             <div style={{marginTop: '20px'}}>
                                 {(album?.reviews?.length) ? (
                                     <h4>Average Score: <i className={(album?.averageRating > 2) ? 'good' : 'bad'}>{album?.averageRating}/5</i></h4>

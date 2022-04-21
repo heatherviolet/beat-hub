@@ -7,7 +7,7 @@ export default function LatestReviews({reviews}) {
     
             {reviews.length ? (
                 <div >
-                    <h1 align="center">Check Out The Latest Reviews By Others!</h1>
+                    <h1 align="center">Check out the latest reviews by others!</h1>
                     <div className='reviews-container'>
                         {reviews?.map((review, i)=> (
                             <Review key={i} review={review}/>
