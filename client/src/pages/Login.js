@@ -43,24 +43,46 @@ const Login = (props) => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-md-6">
         <div className="card form">
-          <h4 className="card-header">Login</h4>
+          <h4 className="card-header"
+          style={{color: '#3e535f',
+        }}>Login</h4>
           <div className="card-body">
             <form onSubmit={handleFormSubmit}>
+            <label>
+                Enter your email
+              </label>
               <input
                 className="form-input"
-                placeholder="Your email"
+                placeholder="Email"
                 name="email"
                 type="email"
                 id="email"
+                style={{color: '#32434d',
+                                
+                width: '100%',
+                backgroundColor: 'white',
+                padding: '5px',
+                borderRadius: '5px'
+            }}
                 value={formState.email}
                 onChange={handleChange}
               />
+              <label>
+                Enter your password
+              </label>
               <input
                 className="form-input"
                 placeholder="******"
                 name="password"
                 type="password"
                 id="password"
+                style={{color: '#32434d',
+                                
+                width: '100%',
+                backgroundColor: 'white',
+                padding: '5px',
+                borderRadius: '5px'
+            }}
                 value={formState.password}
                 onChange={handleChange}
               />
