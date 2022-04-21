@@ -219,8 +219,9 @@ main {
 .form {
   width: 50vw;
   background-color: var(--cream-color);
-  border: 3px solid var(--tertiary-bg-color);
+  border: 3px solid var(--accent-color);
   border-radius: 22px;
+  
 }
 
 #under-form {
@@ -241,12 +242,20 @@ main {
   border: 3px outset var(--cream-color);
 }
 
+
 .selectedNav {
   text-decoration: none;
   text-decoration-style: none;
   border-bottom: 3px solid;
   border-color: var(--accent-color);
+
 }
+
+.btn {
+  background-color: var(--primary-color);
+  font-weight: bold;
+}
+.btn:hover {background-color: #DCF763}
 
 .searchForm {
   max-width: 50vw;
@@ -260,6 +269,8 @@ main {
   padding: 2rem 5rem;
   margin: 0 0 0.8rem 0;
 }
+
+
 
 body {
   margin: 0;
@@ -400,3 +411,4 @@ code {
     width: 23vw;
   }
 }
+
