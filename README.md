@@ -15,9 +15,9 @@ An interactive music-sharing experience.
 
 ### Preview
 
-[![preview image](./client/src/assets/images/beat-hub.jpg)](https://beathub.herokuapp.com/)
+[![preview image](./client/src/assets/images/beet-hub-home.jpg)](https://blooming-tundra-89879.herokuapp.com/)
 
-This application is deployed at https://beathub.herokuapp.com/
+This application is deployed at https://blooming-tundra-89879.herokuapp.com/
 
 Beethub is an interactive album-collection sharing experience. It is built for people who treat music as a lifestyle. Name and save collections, review albums from anywhere by clicking or tapping, and see other users' choices in real time. Beathub is integrated with Spotify, and has access to Spotify's full library of album artwork, artists, and more. There's no need to keep track of another subscription if you use BeetHub!
 

@@ -18,8 +18,6 @@ export default function AddCollection() {
 
     const author = !loading && meData.me.username;
 
-    console.log(author)
-
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 

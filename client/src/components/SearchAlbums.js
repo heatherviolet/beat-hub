@@ -122,7 +122,7 @@ export default function SearchAlbums({ album, id }) {
             <Card.Body>
                 {Auth.loggedIn() ? (
                     <>
-                        <Card.Link href={album.albumURI}>Check It Out on Spotify</Card.Link>
+                        <Card.Link href={`https://open.spotify.com/album/+${albumId}`}>Check It Out on Spotify</Card.Link>
                         <ListGroup>
                             <ListGroupItem>
                             <div>{idExists && "One of your Favorites"}</div>

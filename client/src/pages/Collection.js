@@ -17,7 +17,6 @@ export default function Collection() {
     });
 
     const collection = collData?.getCollection;
-    console.log(collection);
 
     refetch();
 
