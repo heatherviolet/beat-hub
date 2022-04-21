@@ -7,7 +7,7 @@ export default function LatestCollections({ collections }) {
 
         {collections.length ? (
             <div>
-                <h1 align="center">Check Out The Latest Collections By Others!</h1>
+                <h1 align="center">Check out the latest collections by others!</h1>
                 <div className='collections-container'>
                   {collections?.map((collection, i)=> (
                       <Collection key={i} collection={collection} />
