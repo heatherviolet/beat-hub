@@ -230,7 +230,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color:#BFB7B6
 }
 
 .footerMain {
@@ -241,16 +240,15 @@ body {
   position: fixed;
   bottom: 0;
   margin: 1vw 0 0 0;
+  color:#BFB7B6;
 }
 
 .footerElement {
   display: flex;
   align-content: center;
   justify-content: center;
-  
   width: 10vw;
   height: 3rem;
-  
   border-radius: 10px;
   margin: 0 1.2rem;
 }

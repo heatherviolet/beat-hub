@@ -15,6 +15,7 @@ export default function Footer(albumData) {
             height="30"
             className="d-inline-block align-top"
           />
+        &ensp;
           BeetHub
         </div>
         <div>{year}</div>
