@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import logo from "../assets/images/beethub.JPG";
+import logo from "../assets/images/beathub22.png";
 
 import Auth from '../utils/auth'
 
@@ -24,13 +24,13 @@ export default function Navigate() {
       className="d-flex w-100 justify-content-center py-0"
       id="navbar"
     >
-      <Container className="navContainer d-flex justify-content-start">
+      <Container className="navContainer d -flex justify-content-start">
         <Navbar.Brand as={Link} to="/" className="px-3">
-          <img
+          <img 
             alt=""
             src={logo}
-            width="30"
-            height="30"
+            width="40"
+            height="40"
             className="d-inline-block align-top"
           />{" "}
           BeetHub
